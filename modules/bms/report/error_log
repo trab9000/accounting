@@ -1,0 +1,10 @@
+[18-Dec-2025 10:21:42 America/Chicago] PHP Strict Standards:  Declaration of phpbmsPDFReport::SetMargins() should be compatible with FPDF::SetMargins($left, $top, $right = -1) in /home2/fncinc01/public_html/accounting/report/pdfreport_class.php on line 117
+[18-Dec-2025 10:21:42 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 910
+[18-Dec-2025 10:21:42 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 923
+[18-Dec-2025 10:21:42 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1165
+[18-Dec-2025 10:21:42 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1203
+[18-Dec-2025 10:31:44 America/Chicago] PHP Strict Standards:  Declaration of phpbmsPDFReport::SetMargins() should be compatible with FPDF::SetMargins($left, $top, $right = -1) in /home2/fncinc01/public_html/accounting/report/pdfreport_class.php on line 117
+[18-Dec-2025 10:31:44 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 910
+[18-Dec-2025 10:31:44 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 923
+[18-Dec-2025 10:31:44 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1165
+[18-Dec-2025 10:31:44 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1203

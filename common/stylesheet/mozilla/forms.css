@@ -1,0 +1,119 @@
+/* $Rev: 384 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2008-05-04 17:18:08 -0600 (Sun, 04 May 2008) $ */
+
+SELECT, INPUT, TEXTAREA, .uneditable,button{ 
+	border:1px solid #ABB1B1;
+	font-size: 11px; 
+	padding: 2px 0px 2px 3px;  
+	background: #F7FAFA;
+	vertical-align: middle; 
+	font-style:normal;
+}
+
+SELECT{padding:0 0 0 3px;}
+
+TEXTAREA:Focus,SELECT:Focus,INPUT:Focus{background-color:white;border-color:black;}
+
+INPUT[disabled],SELECT[disabled]{color:#AAAAAA;}
+
+FORM{margin:0px;padding:0px;}
+
+.uneditable,.uneditable:Focus {background-color:transparent; border-color:#ABB1B1; color:#666666;}
+
+.currency{text-align:right;}
+.disabledtext{color:#AAAAAA;}
+.radiochecks ,.radiochecks:Focus{background-color:transparent;color:black; border:0; padding:0px;margin:0px;margin-right:4px;}
+
+.Buttons,.smallButtons,.disabledButtons,.pressedButtons{
+	cursor: pointer;
+	background:url(image/button-back.png) repeat-x;
+	padding:2px 4px;
+}
+.smallButtons{font-size:10px;}
+.pressedButtons{background-image:url("image/button-pressed.png")}
+.Buttons:Focus,.smallButtons:Focus,.Buttons:Hover,.smallButtons:Hover,.pressedButtons:Hover{
+	border-color:black;
+}
+
+.disabledButtons{ color:#999999}
+
+.invisibleButtons, .invisibleTextField, .invisibleTextField:focus{
+	border-style:none;
+	background-color:transparent;
+}
+
+.invisibleButtons{
+display:inline;
+margin:0;
+border:0;
+padding:0px;
+font-size:9px;
+color:#0B63A2;
+vertical-align:middle;
+cursor: pointer; 
+}
+.buttonsRight{
+	text-align:right
+}
+
+.graphicButtons{
+margin:0 0 0 3px;
+border:0;
+padding:0px;
+cursor: pointer; 
+width:16px;height:16px;
+vertical-align:middle;
+}
+.graphicButtons span{display:none}
+
+.buttonInfo{background:url(image/button-info.png) 0 0 no-repeat;}
+.buttonIcal{background:url(image/button-ical.png) 0 0 no-repeat; width:27px;}
+.buttonRew{background:url(image/button-rew.png) 0 0 no-repeat;}
+.buttonCheck{background:url(image/button-check.png) 0 0 no-repeat;}
+.buttonFF{background:url(image/button-ff.png) 0 0 no-repeat;}
+.buttonNew{background:url(image/button-new.png) 0 0 no-repeat;}
+.buttonEmail{background:url(image/button-email.png) 0 0 no-repeat;}
+.buttonEdit{background:url(image/button-edit.png) 0 0 no-repeat;}
+.buttonEditDisabled{background:url(image/button-edit-disabled.png) 0 0 no-repeat;}
+.buttonDate{background:url(image/button-date.png) 0 0 no-repeat;}
+.buttonMoney{background:url(image/button-money.png) 0 0 no-repeat;}
+.buttonMoneyDisabled{background:url(image/button-money-disabled.png) 0 0 no-repeat;}
+.buttonPrint{background:url(image/button-print.png) 0 0 no-repeat;}
+.buttonPrintDisabled{background:url(image/button-print-disabled.png) 0 0 no-repeat;}
+.buttonTime{background:url(image/button-time.png) 0 0 no-repeat;}
+.buttonDelete{background:url(image/button-delete.png) 0 0 no-repeat;}
+.buttonDeleteDisabled{background:url(image/button-delete-disabled.png) 0 0 no-repeat;}
+.buttonPlus{background:url(image/button-plus.png) 0 0 no-repeat;}
+.buttonMinus{background:url(image/button-minus.png) 0 0 no-repeat;}
+.buttonMinusDisabled{background:url(image/button-minus-disabled.png) 0 0 no-repeat;}
+.buttonShip{background:url(image/button-ship.png) 0 0 no-repeat;}
+.buttonShipDisabled{background:url(image/button-ship-disabled.png) 0 0 no-repeat;}
+.buttonUp{background:url(image/button-up.png) 0 0 no-repeat;}
+.buttonUpDisabled{background:url(image/button-up-disabled.png) 0 0 no-repeat;}
+.buttonDown{background:url(image/button-down.png) 0 0 no-repeat;}
+.buttonDownDisabled{background:url(image/button-down-disabled.png) 0 0 no-repeat;}
+.buttonMap{background:url(image/button-map.png) 0 0 no-repeat;}
+.buttonWWW{background:url(image/button-www.png) 0 0 no-repeat;}
+.buttonX{background:url(image/button-x.png) 0 0 no-repeat;}
+.buttonTimeStamp{background:url(image/button-timestamp.png) 100% 0 no-repeat;padding-right:20px;font-size:11px;margin-right:6px;color:black;width:auto;}
+.buttonDownload{background:url(image/button-download.png) 0 0 no-repeat;}
+
+.buttonSpinner{
+	cursor:auto;
+	background:url("../../image/spinner.gif") 0 0 no-repeat;
+}
+
+.buttonShowSQLUp{width:35px;background:url(image/button-sql-up.png) 0 0 no-repeat;}
+.buttonShowSQLDown{width:35px;background:url(image/button-sql-down.png) 0 0 no-repeat;}
+
+.fieldCurrency{text-align:right;}
+
+#dontSubmit{position:absolute;display:none;}
+
+#createmodifiedby{clear:both;padding-top:10px;}
+#createmodifiedby table{border-collapse:collapse;}
+#createmodifiedby table td{background-color:#C1D4D4; font-size:11px; padding:2px 9px 2px 5px;margin:0 1px 1px 0; color:#666666;border-right:3px solid #D5D9DD;}
+#createmodifiedby td.cmTitles{background:none; padding-right:5px; padding-left:2px; color:black;}
+#cmFirstRow td{border-bottom:3px solid #D5D9DD}
+
+#savecancel2{float:right;padding-top:12px;}

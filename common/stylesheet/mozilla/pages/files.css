@@ -1,0 +1,11 @@
+/* $Rev: 198 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2007-03-08 15:02:42 -0700 (Thu, 08 Mar 2007) $ */
+
+#topButtons{float:right;width:200px;}
+#topTitle{margin-right:230px;}
+
+#fsAttributes{clear:both;float:right;width:200px;}
+#leftSideDiv{padding-top:1px;margin-right:230px;}
+
+#id,#content{width:98%}
+#fileidlabel{display:none;}

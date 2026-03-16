@@ -1,0 +1,7 @@
+<?php /* ]
+mysql_server	= "localhost"
+mysql_database	= ""
+mysql_user	= ""
+mysql_userpass	= ""
+mysql_pconnect	= "true"
+ end] */ ?>

@@ -1,0 +1,232 @@
+/* $Rev: 384 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2008-05-04 17:18:08 -0600 (Sun, 04 May 2008) $ */
+
+.SBResults A.client{
+	padding-left:30px;
+	background-image:url("../image/client.png");
+}
+
+.SBResults A.prospect{
+	padding-left:30px;
+	background-image:url("../image/prospect.png");
+}
+
+#h1WithPrint{margin-right:230px;}
+#h1WithoutPrint{margin-right:160px;}
+
+#topButtons{float:right;width:217px;}
+#printButton{ text-align:right;float:left;}
+#printButton input{width:75px;}
+
+#fsAttributes{clear:both;float:right;width:260px;}
+#attributesRight{float:right;padding-top:0px;}
+#type{width:90px}
+#statusid{width:98%}
+#leadsource{
+	width:98%
+}
+
+
+#fsTops{margin-right:270px;}
+
+#billingAddressDiv, #shiptoAddressDiv{
+	clear:left;
+	border:1px solid #ACB7C4;
+	padding:8px;
+	margin:0 4px 4px;
+}
+
+.addressButtons{
+	width:75px;
+}
+
+#shiptoAddressDiv{
+	display:none;
+}
+
+#address1, #shiptoaddress1{
+	margin-top:2px;
+	margin-bottom:2px;
+}
+
+#fsAddresses{
+	display:block;
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+#fsAddresses legend{
+	display:none;
+}
+
+.cityState{
+	float:left;
+}
+
+
+.showoptions{
+	width:100px;
+}
+
+.showoptions span{
+	display:inline;
+	padding-left:15px;
+	color : #455372; 
+	font-weight:bold;
+}
+
+#addressOptionsDivBilling, #addressOptionsDivShipTo {
+	display:none;
+}
+
+#LAPickDiv{
+	height:200px;
+	overflow:auto;
+	background:white;
+	border:1px solid #abb1b1;;
+}
+
+.LAPickAs {
+	display:block;
+	padding:8px;
+	border-bottom:1px solid #CCCCCC;
+	font-weight:normal;
+	color:black;
+}
+
+.LAPickAs:hover{
+	text-decoration:none;
+	background: #CCCCCC;
+}
+
+.LASel{
+	color:white;
+	background:black;
+}
+
+.LASel:Hover{
+	background:black;
+}
+
+#lineItemsFS{clear:both;}
+
+#LITable{}
+#LIHeader th{
+	background:#455372;
+	border:1px solid #999999;
+	padding:3px 9px;
+	color:white;
+}
+
+.LIRealInfo{display:none;}
+
+#LIAdd TD{border-bottom:2px solid #999999}
+#LITotals TD{border-top:2px solid #999999}
+
+#ds-partnumber{width:90px;}
+#ds-partname{width:135px;}
+
+#memoHeader{
+	width:100%;
+}
+
+
+#memo, .lineitemMemos{width:100%;padding-right:0;border-right:0;}
+#price, .lineitemPrices{width:60px;}
+#qty, .lineitemQuantities{text-align:right;width:50px;}
+#extended, .fieldTotal, .lineitemExtendeds{width:75px;}
+
+.lineitemMemos, .lineitemPrices, .lineitemQuantities, .lineitemExtendeds{}
+
+.fieldTotal{height:16px;}
+
+.lineitemsButtonDivs{
+	display:none;
+	position:absolute;
+	background:white;
+	padding-bottom:4px;
+	padding-right:2px;
+}
+
+.lineitems .lineitemsButtonTDs{
+	vertical-align:top;
+}
+
+.lineitemsButtonDivs button{
+	margin-top:4px;
+}
+
+.lineitems td{
+	overflow:hidden;
+	background:none;
+	vertical-align:middle;
+	padding:0;
+	font-size:11px;
+	border-color:#AAAAAA;
+	border-left:0;
+	border-right:0;
+}
+
+.lineitems p{margin:4px;padding:0;}
+
+.lineitems:hover td{
+	background:white;
+}
+
+.lineitemMemos{
+	width:100%
+}
+
+.lineitemsRight{ border-right:1px solid #AAAAAA;}
+.lineitemsLeft{ border-left:1px solid #AAAAAA;}
+.lineitemsBottom{ border-bottom:1px solid #AAAAAA;}
+
+.totalItems,.invoiceTotalLabels,#parenInfo div span{border-bottom:1px solid #CCCCCC}
+.invoiceTotalLabels{padding-left:25px;}
+.invoiceTotalLabels div{height:24px; line-height:24px;vertical-align:bottom;}
+
+#parenInfo{
+	margin:0;
+	padding:0;
+	border:0;
+	border-collapse:separate;
+}
+
+#parenInfo td{
+	text-align:right;
+	line-height:24px;
+	color:#666666;
+	padding:0 4px 0 4px;
+	border:0;
+	border-bottom:1px solid #CCCCCC;
+}
+
+#parenInfo td.blanks{
+	line-height:25px;
+	border:0;
+}
+
+#parenInfo td#parenSpacer{
+	height:55px;
+}
+
+#totalSpacer{height:55px;line-height:55px;border:0;}
+#totalSpacer span{border:0;}
+
+.vTabs,.vTabsHover{cursor:pointer;color:#455372;background:url(../image/button-rew.png) 5px 4px no-repeat;}
+.vTabsHover,.vContent{background-color:#DDDDDD;}
+.vContent{display:none;padding:8px; text-align:left;float:right;width:360px;}
+.vContent fieldset{margin:0;}
+
+#shippingNotice,#paymentNotice{display:none;}
+#shippingNoticeResults,#paymentNoticeResults{width:98%}
+#pTotalweight{float:right}
+#ccpaymentinfo,#checkpaymentinfo,pTransactionid{display:none;}
+#fieldCCNumber,#fieldCCExpiration{float:left;}
+#pCheckNumber,#pAccountNumber{float:right;}
+
+
+#fsInstructions{clear:both;}
+#specialinstructions,#printedinstructions{width:99%}
+

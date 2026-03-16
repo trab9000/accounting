@@ -1,0 +1,114 @@
+/* $Rev: 384 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2008-05-04 17:18:08 -0600 (Sun, 04 May 2008) $ */
+
+.SBResults A.client{
+	padding-left:30px;
+	background-image:url("../image/client.png");
+}
+
+.SBResults A.prospect{
+	padding-left:30px;
+	background-image:url("../image/prospect.png");
+}
+
+#viewButton, #addButton{
+	width:70px
+}
+
+#clientIDDiv{
+	width:100%;
+	margin-right:200px;
+	margin-left: 170px;
+	background:red;
+}
+#ds-clientid{
+	width:55%;
+}
+
+
+
+
+#crTile.fsclient{
+	background-image:url("../image/client.png");
+}
+
+#crTile.fsprospect{
+	background-image:url("../image/prospect.png");
+}
+
+#crTile{
+	background:white no-repeat 13px 13px;
+}
+
+#crTile H1 {
+	background:none;
+	padding-left:26px;
+	font-weight:bold;
+}
+
+#crTile P{
+	margin: 5px 0 5px 42px;
+	padding: 0;
+}
+
+#crName{
+	font-size:14px;
+	font-weight:bold;
+	margin-top:0;
+}
+
+#crLocation{
+	font-size:10px;
+}
+
+.RDNames{
+	float:left; 
+	width:100px;
+	text-align:right;
+	font-weight:bold;
+}
+
+.RDData{
+	margin-left:120px;
+}
+
+.RDData UL {
+	margin:0;
+	padding:0;
+	padding-left:15px;
+}
+
+.RDData LI {
+	margin:0;
+	padding:0px 0px 5px 0;
+}
+
+#theclear{
+	clear:both;
+}
+
+
+.disabledP{display:none;}
+
+#theDetails{margin-top:15px;}
+#rightSideDiv{float:right;width:300px;margin-top:0;}
+#leftSideDiv{margin-right:308px;padding-top:1px;}
+
+H2{margin-top:5px;}
+
+.RDNames{float:left; width:100px;text-align:right;}
+.RDData{margin-left:120px;}
+
+#editClient{display:block;width:75px;float:right;}
+
+#endClient{clear:both;}
+
+.salesNotesButtons{
+	float:right;
+	margin-top:4px;
+	width:46px;
+	text-align:left;
+}
+
+#salesTable{height:140px;overflow:auto;}
+#notesTable{height:140px;overflow:auto;}

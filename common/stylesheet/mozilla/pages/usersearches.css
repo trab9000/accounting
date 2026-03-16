@@ -1,0 +1,13 @@
+/* $Rev: 198 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2007-03-08 15:02:42 -0700 (Thu, 08 Mar 2007) $ */
+#topButtons{float:right;width:160px;}
+#topTitle{margin-right:170px;}
+
+#fsAttributes{float:right;width:200px;}
+#id,#type{width:98%}
+
+#leftSideDiv{margin-right:228px; padding-top:1px;}
+
+#sqlclause{width:99%}
+
+#savecancel2{text-align:right;float:none;}

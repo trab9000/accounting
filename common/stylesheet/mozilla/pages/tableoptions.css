@@ -1,0 +1,6 @@
+/* $Rev: 318 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2007-10-11 11:13:13 -0600 (Thu, 11 Oct 2007) $ */
+#topTitle{}
+.noselects{cursor:auto}
+
+#save, #cancel {width:75px;}

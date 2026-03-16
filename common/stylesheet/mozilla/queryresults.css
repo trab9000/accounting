@@ -1,0 +1,91 @@
+/* $Rev: 308 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2007-09-17 12:30:10 -0600 (Mon, 17 Sep 2007) $ */
+
+.row1{background-color:white;}
+.row2{background-color:#D9DBE1;}
+
+.buttonSectionTitles,.buttonSection{border: 1px #666666 solid; border-bottom: 0; 
+	font-size:11px; padding:1px; padding-bottom:0px; 
+}
+.buttonSection{border-top:0;  padding-top:0; padding-bottom:1px;}
+
+#queryTableContainer{
+	margin:0 0 5px;
+	padding:0;
+	clear:both;
+	overflow:auto;
+}
+
+
+.querytable{ 
+	clear:both;
+	border:1px solid #BBBBBB;
+	border-right-width:0;
+}
+
+.querytable td, .querytable th{ 
+	font-size: 11px;
+	padding:6px;
+	border-right:1px solid #BBBBBB;
+}
+.norecords td {
+	font-size:16px; 
+	padding:20px; 
+	font-weight:bold; 
+	text-align:center;
+}
+
+.querytable th{
+	border-bottom:1px solid #BBBBBB;
+	background:#7B8DA1;
+	font-size:12px;
+	color:white;
+}
+.querytable th A{color: white;}
+.querytable th A:hover{color: white;}
+
+.queryGroup td{
+	background:#97A7BA;
+	font-size: 14px;	
+	font-weight:bold;
+	border-bottom:1px solid #BBBBBB;	
+}
+
+.querytable .queryfooter td{
+	border-top:1px solid #BBBBBB;
+	white-space:nowrap;
+	background:#DDDDDD;
+}
+
+.qr1 td,.qr2 td{background-color:white;
+			cursor: pointer; 
+}
+.qr2 td{background-color:#F5F6F8}
+
+.qr1:hover td, .qr2:hover td{background-color:#EAEDF1;}
+
+.qh1 td, .qh2 td{background-color:black; cursor: pointer; color:white;}
+.qh1 a, .qh2 a{color:white;}
+
+
+
+#sqlstatement{display:none}
+
+.lineitems td{
+	background-color:white;
+	padding-left:2px;
+	padding-right:2px;
+	border-right:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+}
+
+
+.smallQueryTableHolder{overflow:auto;background-color:#CCCCCC;border:1px inset black;padding:0px;}
+.smallQueryTable, .smallQueryTable td{font-size:11px;}
+.smallQueryTable th{font-weight:bold;border-bottom:1px solid #999999; border-right:1px solid #999999; padding:2px; padding-left:4px; padding-right:4px;}
+.smallQueryTable td{background-color:white;border-bottom:1px solid #CCCCCC; border-right:1px solid #CCCCCC; padding:2px;padding-left:4px; padding-right:4px;cursor:pointer;}
+.smallQueryTable tr:Hover td{background-color:#999999;color:white;text-decoration:none;}
+.smallQueryTable tr:Hover td a{color:white;}
+.smallQueryTableSelected td{background-color:black;color:white}
+.smallQueryTableSelected a{color:white}
+.smallQueryTable tr.smallQueryTableSelected:Hover  td{background-color:black;color:white}

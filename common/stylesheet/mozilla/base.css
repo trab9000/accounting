@@ -1,0 +1,161 @@
+/* $Rev: 384 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2008-05-04 17:18:08 -0600 (Sun, 04 May 2008) $ */
+
+@import url(basics.css);
+@import url(forms.css);
+@import url(sizes.css);
+@import url(boxes.css);
+@import url(tabs.css);
+@import url(queryresults.css);
+@import url(menu.css);
+@import url(modal.css);
+@import url(calendar.css);
+
+
+
+#footer{
+	margin-top:-3px;
+	padding-left:6px;
+	padding-right:6px;
+	padding-top:0px;
+	margin:0 15px;
+}
+#footer p{padding:0px;margin:0px; font-size:9px;}
+#footerAbout{float:left;}
+#footerTop{float:right;}
+
+/* ============================================================================== */
+/* Auto Fill                                                                      */
+/* ============================================================================== */
+
+	.autofillField{
+		background-image:url("image/magnify.gif");
+		background-position:right;
+		background-repeat:no-repeat;
+	}
+
+	.AFDropDowns{
+		position:absolute;
+	}
+	.AFDropDowns UL{margin:0;
+		padding:2px 2px 4px 2px;
+		background-color:white;
+		border:1px solid #999999;
+	}
+	.AFDropDowns LI{margin:0;padding:0;list-style-type:none;}
+	.AFDropDowns a{
+		color:#663366;
+		white-space:nowrap;
+		display:block;
+		padding:3px 25px 3px 10px;
+		font-size:11px;
+	}
+	.AFDropDowns a:hover, .AFDropDowns a.AFDropDownItems{text-decoration:none;background:#663366;color:white;}
+	.AFDropDowns a span{font-size:10px;color:#999999;font-weight:normal;margin-left:5px;}
+
+/* ============================================================================== */
+/* Choice List                                                                    */
+/* ============================================================================== */
+	.choiceListBlank{ font-style:italic;}
+	.choiceListModify{ background-color:#999999; font-weight:bold;}
+
+	#MLListP{float:left;padding-right:0}
+	#MLList{}
+	#MLAddDelP{float:right;padding-left:0}
+	#MLDelete, #MLInsert, #MLaddeditbutton{width:55px;}
+	#MLDelete{margin-bottom:2px;}
+	#MLlist, #MLaddedit{width:200px;}
+	#MLAddTextP{clear:both;float:left;padding-right:0}
+	#MLAddP{float:right;padding-left:0}
+	#MLStatus{clear:both;text-align:center}
+	
+
+/* ============================================================================== */
+/* Quick View                                                                     */
+/* ============================================================================== */
+	.selectListItems{ border-bottom: 1px solid #666666; background-color:white;}
+	.Order{ font-weight:bold;}
+	.Quote{ font-style:italic;}
+	.Invoice{ background-color:#EEEEEE;}
+	.VOID{ color:blue; background-color:#EEEEEE;}
+
+/* ============================================================================== */
+/* Save/Cancels                                                                   */
+/* ============================================================================== */
+	.saveCancels{text-align:right;}
+	#saveButton1,#saveButton2{width:68px;margin-right:3px;}
+	#cancelButton1,#cancelButton2{width:68px;}
+	
+/* ============================================================================== */
+/* Smart Searches                                                                 */
+/* ============================================================================== */
+.inputSmartSearch{
+	background-image:url("image/magnify.gif");
+	background-position:right;
+	background-repeat:no-repeat;
+	padding-right:10px;
+}
+
+.smartSearchBox{
+	border:1px solid #999999;
+	background:white;
+	position:absolute;
+}
+
+.SBResults{
+ overflow:auto;
+}
+
+.SBResults DIV{
+	 color:#666666;
+	 padding:5px;
+	 font-style:italic;
+}
+
+.SBResults A{
+/*	width:245px;/* 295 - 5 - 30 */
+	display:block;
+	color:#663366;
+	font-weight:normal;
+	padding:6px 5px 6px 5px;
+	background-repeat:no-repeat;
+	background-position:8px 8px;
+}
+
+.SBResults A:hover, .SBResults A.SBSelected{
+	text-decoration:none;
+	background-color:#663366;
+	color:white;
+}
+
+.SBAddNewButton{
+	width:70px;
+	text-align:right;
+}
+
+.SBResults SPAN{
+	display:block;
+}
+
+.SBMain{
+	font-weight:bold;
+}
+
+.SBExtra{
+	font-size:9px;
+	padding-left:5px;
+}
+
+.SBHeader{
+	background:#EEEEEE;
+	text-align:right;	
+	padding:5px;
+	height:16px;
+}
+
+.SBFooter{
+	background:#EEEEEE;
+	text-align:right;
+	font-size:10px;
+	padding:5px;
+}

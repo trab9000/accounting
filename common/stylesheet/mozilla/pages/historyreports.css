@@ -1,0 +1,7 @@
+/* $Rev: 285 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2007-08-27 14:05:27 -0600 (Mon, 27 Aug 2007) $ */
+#reportOptions{width:550px; margin:10px auto 5px;}
+#footer{width:550px; margin:0 auto;}
+#topTitle{}
+#fromP{float:left;}
+#print,#cancel{width:75px;}

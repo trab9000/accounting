@@ -1,0 +1,23 @@
+# Config files with credentials
+settings.php
+config.php
+*.env
+.env
+
+# Uploads / user content
+uploads/
+assets/uploads/
+
+# Logs & cache
+logs/
+*.log
+cache/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Dependencies (if using Composer)
+vendor/

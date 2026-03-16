@@ -1,0 +1,36 @@
+[02-Dec-2025 08:27:15 America/Chicago] PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/opt/alt/php56/var/lib/php/session) failed: Permission denied (13) in /home2/fncinc01/public_html/accounting/include/session.php on line 352
+[17-Dec-2025 17:09:50 America/Chicago] PHP Deprecated:  Function ereg_replace() is deprecated in /home2/fncinc01/public_html/accounting/include/common_functions.php on line 229
+[17-Dec-2025 17:09:56 America/Chicago] PHP Strict Standards:  Declaration of phpbmsPDFReport::SetMargins() should be compatible with FPDF::SetMargins($left, $top, $right = -1) in /home2/fncinc01/public_html/accounting/report/pdfreport_class.php on line 117
+[17-Dec-2025 17:09:56 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 910
+[17-Dec-2025 17:09:56 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 923
+[17-Dec-2025 17:09:56 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1165
+[17-Dec-2025 17:09:56 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1203
+[18-Dec-2025 10:01:37 America/Chicago] PHP Strict Standards:  Declaration of phpbmsPDFReport::SetMargins() should be compatible with FPDF::SetMargins($left, $top, $right = -1) in /home2/fncinc01/public_html/accounting/report/pdfreport_class.php on line 117
+[18-Dec-2025 10:01:37 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 910
+[18-Dec-2025 10:01:37 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 923
+[18-Dec-2025 10:01:37 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1165
+[18-Dec-2025 10:01:37 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1203
+[18-Dec-2025 10:04:39 America/Chicago] PHP Strict Standards:  Declaration of phpbmsPDFReport::SetMargins() should be compatible with FPDF::SetMargins($left, $top, $right = -1) in /home2/fncinc01/public_html/accounting/report/pdfreport_class.php on line 117
+[18-Dec-2025 10:04:39 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 910
+[18-Dec-2025 10:04:39 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 923
+[18-Dec-2025 10:04:39 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1165
+[18-Dec-2025 10:04:39 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1203
+[18-Dec-2025 10:13:04 America/Chicago] PHP Strict Standards:  Declaration of phpbmsPDFReport::SetMargins() should be compatible with FPDF::SetMargins($left, $top, $right = -1) in /home2/fncinc01/public_html/accounting/report/pdfreport_class.php on line 117
+[18-Dec-2025 10:13:04 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 910
+[18-Dec-2025 10:13:04 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 923
+[18-Dec-2025 10:13:04 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1165
+[18-Dec-2025 10:13:04 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1203
+[18-Dec-2025 10:14:02 America/Chicago] PHP Strict Standards:  Declaration of phpbmsPDFReport::SetMargins() should be compatible with FPDF::SetMargins($left, $top, $right = -1) in /home2/fncinc01/public_html/accounting/report/pdfreport_class.php on line 117
+[18-Dec-2025 10:14:02 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 910
+[18-Dec-2025 10:14:02 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 923
+[18-Dec-2025 10:14:02 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1165
+[18-Dec-2025 10:14:02 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1203
+[18-Dec-2025 10:21:41 America/Chicago] PHP Strict Standards:  mktime(): You should be using the time() function instead in /home2/fncinc01/public_html/accounting/print.php on line 112
+[18-Dec-2025 10:31:44 America/Chicago] PHP Strict Standards:  mktime(): You should be using the time() function instead in /home2/fncinc01/public_html/accounting/print.php on line 112
+[18-Dec-2025 10:44:36 America/Chicago] PHP Strict Standards:  Declaration of phpbmsPDFReport::SetMargins() should be compatible with FPDF::SetMargins($left, $top, $right = -1) in /home2/fncinc01/public_html/accounting/report/pdfreport_class.php on line 117
+[18-Dec-2025 10:44:36 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 910
+[18-Dec-2025 10:44:36 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 923
+[18-Dec-2025 10:44:36 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1165
+[18-Dec-2025 10:44:36 America/Chicago] PHP Deprecated:  Function set_magic_quotes_runtime() is deprecated in /home2/fncinc01/public_html/accounting/fpdf/fpdf.php on line 1203
+[03-Jan-2026 18:19:47 America/Chicago] PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/opt/alt/php56/var/lib/php/session) failed: Permission denied (13) in /home2/fncinc01/public_html/accounting/include/session.php on line 352
+[12-Mar-2026 04:01:49 America/Chicago] PHP Notice:  session_start(): ps_files_cleanup_dir: opendir(/opt/alt/php56/var/lib/php/session) failed: Permission denied (13) in /home2/fncinc01/public_html/accounting/include/session.php on line 352

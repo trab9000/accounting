@@ -1,0 +1,6 @@
+/* $Rev: 150 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2006-10-22 13:38:49 -0600 (Sun, 22 Oct 2006) $ */
+
+.noselects{cursor:auto}
+
+#column,#sortorder,#footerquery{width:98%}

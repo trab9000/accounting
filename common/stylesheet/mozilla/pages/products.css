@@ -1,0 +1,59 @@
+/* $Rev: 386 $ | $LastChangedBy: brieb $ */
+/* $LastChangedDate: 2008-05-06 13:36:09 -0600 (Tue, 06 May 2008) $ */
+
+#topButtons{
+	float:right;
+	width:160px;
+}
+
+#topTitle{
+	margin-right:160px;
+}
+
+#rightsideDiv{
+	clear:both;
+	float:right;
+	width:220px;
+	margin:0;
+	padding:0;
+}
+
+#id, #categoryid, #status, #type, #memo{
+	width:98%
+}
+
+#leftsideDiv{
+	margin-right:228px;
+	padding-top:1px;
+}
+
+.costsP{
+	float:left;
+	padding-top:3px;
+}
+
+#weightP{
+	clear:left;
+}
+
+#webstuff{display:none}
+#keywords,#webdescription{width:98%}
+#webDescPreview{margin:0px;border:1px solid #CCCCCC; background-color:white;padding:2px;height:115px;overflow:auto;width:98%}
+#buttonWebPreview{width:75px;margin-top:2px;}
+
+#noThumb{margin:3px;border:1px solid black;background-color:white;color:#999999;width:75px;height:43px;padding-top:32px;}
+#noPicture{margin:3px;border:1px solid black;background-color:white;color:#999999;width:150px;height:78px;padding-top:70px;}
+
+/* ------------------------ */
+/* product prerequistes     */
+/* ------------------------ */
+.preqAdd{float:left;}
+#addButtonP{padding-top:2px;}
+
+/* ------------------------ */
+/* sales history            */
+/* ------------------------ */
+.timelineP{float:left}
+#printP{float:right;}
+#print{width:80px;}
+#changeTimelineP{}
