@@ -38,6 +38,7 @@
 */
 
 	require("../../include/session.php");
+	require_once("../../include/mail_helper.php");
 	
 	
 	$result="Error";
@@ -57,7 +58,7 @@
 				foreach($therecord as $key=>$value)
 					$themessage=str_replace("[[".$key."]]",$value,$themessage);
 				
-				if(@ mail($therecord["email"],$_SESSION["massemail"]["subject"],$themessage,"From: ".$_SESSION["massemail"]["from"]))
+				if(phpbmsMail($therecord["email"],$_SESSION["massemail"]["subject"],$themessage,$_SESSION["massemail"]["from"]))
 					$result="sent";
 				else
 					$result="failed";

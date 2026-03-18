@@ -249,7 +249,7 @@ class phpbmsSession{
 						$endpos=strrpos($value,"\"");
 						if($endpos!=false)
 							$value=substr($value,$startpos+1,$endpos-$startpos-1);
-						if(strpos($key,"mysql_")===0){
+						if(strpos($key,"mysql_")===0 || strpos($key,"smtp_")===0){
 							define(strtoupper($key),$value);
 						}
 					}

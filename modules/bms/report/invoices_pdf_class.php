@@ -39,6 +39,9 @@
 
 	if(!class_exists("phpbmsReport"))
 		include("report/report_class.php");
+
+	if(!function_exists("phpbmsMail"))
+		include("include/mail_helper.php");
 		
 	class invoicePDF extends phpbmsReport{
 	
@@ -603,52 +606,32 @@
 					break;
 					
 				case "email":
-				
+
 					if(!$userinfo)
 						$userinfo = $_SESSION["userinfo"];
-				
+
 					if(!$userinfo["email"] || !$this->invoicerecord["email"])
 						return false;
-				
+
 					$pdf = $this->pdf->Output(NULL, "S");
-					
-					$to = 		$this->invoicerecord["email"];
-					$from = 	$userinfo["email"];
-					$subject = 	"Your ".$this->title." from ".COMPANY_NAME;
-					$message = 	"Attached is your ".$this->title." from ".COMPANY_NAME."\n\n" .
-								"The attachment requires Adobe Acrobat Reader to view. \n If you do not " .
-								"have Acrobat Reader, you can download it at http://www.adobe.com  \n\n" .
+
+					$to      = $this->invoicerecord["email"];
+					$from    = $userinfo["email"];
+					$subject = "Your ".$this->title." from ".COMPANY_NAME;
+					$body    = "Attached is your ".$this->title." from ".COMPANY_NAME."\n\n" .
+								"The attachment requires Adobe Acrobat Reader to view.\n" .
+								"If you do not have Acrobat Reader, you can download it at http://www.adobe.com\n\n" .
 								COMPANY_NAME."\n".
 								COMPANY_ADDRESS."\n".COMPANY_CSZ."\n".COMPANY_PHONE;
-					
-					$headers = "From: $from";
-					
-					$semi_rand = md5( time() ); 
-					$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x"; 
-				
-					$headers .= "\nMIME-Version: 1.0\n" . 
-								"Content-Type: multipart/mixed;\n" . 
-								" boundary=\"{$mime_boundary}\"";
-				
-					$message = "This is a multi-part message in MIME format.\n\n" . 
-							"--{$mime_boundary}\n" . 
-							"Content-Type: text/plain; charset=\"iso-8859-1\"\n" . 
-							"Content-Transfer-Encoding: 7bit\n\n" . 
-							$message . "\n\n";
-				
-					$pdf = chunk_split( base64_encode( $pdf ) );
-							 
-					$message .= "--{$mime_boundary}\n" . 
-							 "Content-Type: {application/pdf};\n" . 
-							 " name=\"".$this->title.$this->invoicerecord["id"].".pdf\"\n" . 
-							 "Content-Disposition: attachment;\n" . 
-							 " filename=\"".$this->title.$this->invoicerecord["id"].".pdf\"\n" . 
-							 "Content-Transfer-Encoding: base64\n\n" . 
-							 $pdf . "\n\n" . 
-							 "--{$mime_boundary}--\n";
-					
-					return @ mail($to, $subject, $message, $headers);
-					
+
+					$attachment = array(
+						'data' => $pdf,
+						'name' => $this->title.$this->invoicerecord["id"].".pdf",
+						'type' => 'application/pdf'
+					);
+
+					return phpbmsMail($to, $subject, $body, $from, $attachment);
+
 					break;
 				
 			}//endswitch

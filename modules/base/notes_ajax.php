@@ -38,6 +38,7 @@
 */
 
 	require_once("../../include/session.php");
+	require_once("../../include/mail_helper.php");
 	
 
 	function sendNoticeEmail($db,$noteid) {
@@ -118,7 +119,7 @@
 		}		
 		$themessage.="Memo:\n".$therecord["content"];
 		
-		if(! @ mail($torecord["email"],$subject,$themessage,"From: ".$from))
+		if(!phpbmsMail($torecord["email"],$subject,$themessage,$from))
 			return "Error Processing E-Mail.";
 		
 		return "E-Mail Sent.";
