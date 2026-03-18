@@ -1,0 +1,16 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/fncinc01/public_html/accounting
+    - /bin/cp -R . $DEPLOYPATH
+    - /bin/rm -rf $DEPLOYPATH/.git
+    - /bin/rm -rf $DEPLOYPATH/_bmad
+    - /bin/rm -rf $DEPLOYPATH/docs
+    - /bin/rm -rf $DEPLOYPATH/.claude
+    - /bin/rm -rf $DEPLOYPATH/docker
+    - /bin/rm -f $DEPLOYPATH/.cpanel.yml
+    - /bin/rm -f $DEPLOYPATH/.dockerignore
+    - /bin/rm -f $DEPLOYPATH/docker-compose.yml
+    - /bin/rm -f $DEPLOYPATH/Dockerfile
+    - /bin/rm -f $DEPLOYPATH/mail_viewer.php
+
