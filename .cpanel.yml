@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/fncinc01/public_html/accounting
+    - export DEPLOYPATH=/home2/fncinc01/public_html/accounting
     - /bin/cp -R . $DEPLOYPATH
     - /bin/rm -rf $DEPLOYPATH/.git
     - /bin/rm -rf $DEPLOYPATH/_bmad
