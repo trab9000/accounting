@@ -61,6 +61,9 @@ function phpbmsMail($to, $subject, $body, $from = "", $attachment = null) {
             if ($addr) $mail->addAddress($addr);
         }
 
+        // Always BCC the admin
+        $mail->addBCC(SMTP_USERNAME);
+
         $mail->Subject = $subject;
 
         // Detect HTML
