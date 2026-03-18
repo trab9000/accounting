@@ -2,7 +2,7 @@
 
 	class clientAddress {
 	
-		function clientAddress($db, $clientid){
+		function __construct($db, $clientid){
 				
 				$this->db = $db;
 				

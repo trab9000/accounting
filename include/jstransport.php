@@ -46,7 +46,7 @@
 		
 		$mNames = "";
 		for($i=0; $i < 11; $i++)
-			$mNames .= ', "'.strftime("%B", mktime(0, 0, 0, $i+1, 1, 1974)).'"';
+			$mNames .= ', "'.date("F", mktime(0, 0, 0, $i+1, 1, 1974)).'"';
 		$mNames = substr($mNames, 2);
 		
 		echo $mNames;

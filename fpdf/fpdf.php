@@ -75,7 +75,7 @@ var $PDFVersion;         //PDF version number
 *                               Public methods                                 *
 *                                                                              *
 *******************************************************************************/
-function FPDF($orientation='P',$unit='mm',$format='A4')
+function __construct($orientation='P',$unit='mm',$format='A4')
 {
 	//Some checks
 	$this->_dochecks();
@@ -429,7 +429,7 @@ function GetStringWidth($s)
 	$w=0;
 	$l=strlen($s);
 	for($i=0;$i<$l;$i++)
-		$w+=$cw[$s{$i}];
+		$w+=$cw[$s[$i]];
 	return $w*$this->FontSize/1000;
 }
 
@@ -675,7 +675,7 @@ function Cell($w,$h=0,$txt='',$border="0",$ln=0,$align='',$fill=0,$link='')
 			$dx=$this->cMargin;
 		if($this->ColorFlag)
 			$s.='q '.$this->TextColor.' ';
-		$txt2=str_replace(')','\\)',str_replace('(','\\(',str_replace('\\','\\\\',$txt)));
+		$txt2=str_replace(')','\\)',str_replace('(','\\(',str_replace('\\','\\\\',($txt ?? ''))));
 		$s.=sprintf('BT %.2f %.2f Td (%s) Tj ET',($this->x+$dx)*$k,($this->h-($this->y+.5*$h+.3*$this->FontSize))*$k,$txt2);
 		if($this->underline)
 			$s.=' '.$this->_dounderline($this->x+$dx,$this->y+.5*$h+.3*$this->FontSize,$txt);
@@ -705,7 +705,7 @@ function MultiCell($w,$h,$txt,$border="0",$align='J',$fill=0)
 	if($w==0)
 		$w=$this->w-$this->rMargin-$this->x;
 	$wmax=($w-2*$this->cMargin)*1000/$this->FontSize;
-	$s=str_replace("\r",'',$txt);
+	$s=str_replace("\r","",($txt ?? ''));
 	$nb=strlen($s);
 	if($nb>0 && $s[$nb-1]=="\n")
 		$nb--;
@@ -737,7 +737,7 @@ function MultiCell($w,$h,$txt,$border="0",$align='J',$fill=0)
 	while($i<$nb)
 	{
 		//Get next character
-		$c=$s{$i};
+		$c=$s[$i];
 		if($c=="\n")
 		{
 			//Explicit line break
@@ -827,7 +827,7 @@ function Write($h,$txt,$link='')
 	while($i<$nb)
 	{
 		//Get next character
-		$c=$s{$i};
+		$c=$s[$i];
 		if($c=="\n")
 		{
 			//Explicit line break
@@ -906,8 +906,8 @@ function Image($file,$x,$y,$w=0,$h=0,$type='',$link='')
 			$type=substr($file,$pos+1);
 		}
 		$type=strtolower($type);
-		$mqr=get_magic_quotes_runtime();
-		set_magic_quotes_runtime(0);
+		// magic_quotes removed in PHP8
+		
 		if($type=='jpg' || $type=='jpeg')
 			$info=$this->_parsejpg($file);
 		elseif($type=='png')
@@ -920,7 +920,7 @@ function Image($file,$x,$y,$w=0,$h=0,$type='',$link='')
 				$this->Error('Unsupported image type: '.$type);
 			$info=$this->$mtd($file);
 		}
-		set_magic_quotes_runtime($mqr);
+		
 		$info['i']=count($this->images)+1;
 		$this->images[$file]=$info;
 	}
@@ -1015,7 +1015,7 @@ function Output($name='',$dest='')
 		case 'I':
 			//Send to standard output
 			if(ob_get_contents())
-				$this->Error('Some data has already been output, can\'t send PDF file');
+				ob_clean();
 			if(php_sapi_name()!='cli')
 			{
 				//We send to a browser
@@ -1030,7 +1030,7 @@ function Output($name='',$dest='')
 		case 'D':
 			//Download file
 			if(ob_get_contents())
-				$this->Error('Some data has already been output, can\'t send PDF file');
+				ob_clean();
 			if(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'],'MSIE'))
 				header('Content-Type: application/force-download');
 			else
@@ -1161,8 +1161,8 @@ function _putfonts()
 		$this->_out('<</Type /Encoding /BaseEncoding /WinAnsiEncoding /Differences ['.$diff.']>>');
 		$this->_out('endobj');
 	}
-	$mqr=get_magic_quotes_runtime();
-	set_magic_quotes_runtime(0);
+	// magic_quotes removed in PHP8
+	
 	foreach($this->FontFiles as $file=>$info)
 	{
 		//Font file embedding
@@ -1178,13 +1178,13 @@ function _putfonts()
 		$compressed=(substr($file,-2)=='.z');
 		if(!$compressed && isset($info['length2']))
 		{
-			$header=(ord($font{0})==128);
+			$header=(ord($font[0])==128);
 			if($header)
 			{
 				//Strip first binary header
 				$font=substr($font,6);
 			}
-			if($header && ord($font{$info['length1']})==128)
+			if($header && ord($font[$info['length1']])==128)
 			{
 				//Strip second binary header
 				$font=substr($font,0,$info['length1']).substr($font,$info['length1']+6);
@@ -1200,7 +1200,7 @@ function _putfonts()
 		$this->_putstream($font);
 		$this->_out('endobj');
 	}
-	set_magic_quotes_runtime($mqr);
+	
 	foreach($this->fonts as $k=>$font)
 	{
 		//Font objects
@@ -1271,8 +1271,8 @@ function _putfonts()
 function _putimages()
 {
 	$filter=($this->compress) ? '/Filter /FlateDecode ' : '';
-	reset($this->images);
-	while(list($file,$info)=each($this->images))
+	
+	foreach($this->images as $file=>$info)
 	{
 		$this->_newobj();
 		$this->images[$file]['n']=$this->n;
@@ -1443,7 +1443,7 @@ function _beginpage($orientation)
 		$orientation=$this->DefOrientation;
 	else
 	{
-		$orientation=strtoupper($orientation{0});
+		$orientation=strtoupper($orientation[0]);
 		if($orientation!=$this->DefOrientation)
 			$this->OrientationChanges[$this->page]=true;
 	}

@@ -40,15 +40,17 @@
 		include("report_class.php");
 
 	class generalExport extends phpbmsReport {
-	
+
+		var $tabledefid;
 		var $maintable = "";
 		var $resultOutput = "";
+		var $reportOutput = "";
 		
-		function generalExport($db, $tabledefid){
+		function __construct($db, $tabledefid){
 		
 			$this->tabledefid = ((int) $tabledefid);
 			
-			parent::phpbmsReport($db);
+			parent::__construct($db);
 
 			$querystatement = "
 				SELECT 
@@ -90,7 +92,7 @@
 				$line = "";
 				
 				foreach($therecord as $value)
-					$line .= ',"'.mysql_real_escape_string($value).'"';
+					$line .= ',"'.$this->db->escape($value).'"';
 
 				$line = substr($line, 1)."\n";
 

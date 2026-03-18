@@ -51,7 +51,7 @@ class phpbms{
 	var $showFooter = true;
 	var $showMenu = true;
 	
-	function phpbms($db){
+	function __construct($db){
 		$this->db = $db;
 		
 		$this->modules = $this->getModules();
@@ -169,7 +169,7 @@ class phpbms{
 		$queryresult = $this->db->query($querystatement);
 	
 		$tempinfo = $this->db->fetchArray($queryresult);
-		return trim($tempinfo["name"]);
+		return trim($tempinfo["name"] ?? "");
 		
 	}// end method
 
@@ -226,29 +226,29 @@ function stringToDate($datestring,$format=DATE_FORMAT){
 			break;
 
 			case "English, US":
-				$datestring="/".ereg_replace(",.","/",$datestring);
+				$datestring="/".preg_replace("/,./","/",$datestring);
 				$temparray=explode("/",$datestring);
 				if(count($temparray)>1)
 					$thedate=mktime(0,0,0,(int) $temparray[1],(int) $temparray[2],(int) $temparray[3]);
-				else 
+				else
 					return false;
 			break;
-			
+
 			case "English, UK":
-				$datestring="/".ereg_replace(",.","/",$datestring);
+				$datestring="/".preg_replace("/,./","/",$datestring);
 				$temparray=explode("/",$datestring);
 				if(count($temparray)>1)
 					$thedate=mktime(0,0,0,(int) $temparray[2],(int) $temparray[1],(int) $temparray[3]);
-				else 
+				else
 					return false;
 			break;
-			
+
 			case "Dutch, NL":
-				$datestring="-".ereg_replace(",.","-",$datestring);
+				$datestring="-".preg_replace("/,./","-",$datestring);
 				$temparray=explode("-",$datestring);
 				if(count($temparray)>1)
 					$thedate=mktime(0,0,0,(int) $temparray[2],(int) $temparray[1],(int) $temparray[3]);
-				else 
+				else
 					return false;
 			break;
 
@@ -294,19 +294,19 @@ function dateToString($thedate,$format=DATE_FORMAT){
 		switch($format){
 
 			case "SQL":
-				$datestring=strftime("%Y-%m-%d",$thedate);
+				$datestring=date("Y-m-d",$thedate);
 			break;
 			
 			case "English, US":
-				$datestring=strftime("%m/%d/%Y",$thedate);
+				$datestring=date("m/d/Y",$thedate);
 			break;
 			
 			case "English, UK":
-				$datestring=strftime("%d/%m/%Y",$thedate);
+				$datestring=date("d/m/Y",$thedate);
 			break;
 
 			case "Dutch, NL":
-				$datestring=strftime("%d-%m-%Y",$thedate);
+				$datestring=date("d-m-Y",$thedate);
 			break;
 		}
 	}
@@ -318,10 +318,10 @@ function timeToString($thetime,$format=TIME_FORMAT){
 	if($thetime){
 		switch($format){
 			case "24 Hour":
-				$timestring=strftime("%H:%M:%S",$thetime);
+				$timestring=date("H:i:s",$thetime);
 			break;
 			case "12 Hour":
-				$timestring=trim(strftime(HOUR_FORMAT.":%M %p",$thetime));
+				$timestring=date(str_replace(["%l","%I"],["g","h"],HOUR_FORMAT).":i A",$thetime);
 			break;
 		}
 	}
@@ -385,7 +385,7 @@ function formatFromSQLDatetime($sqldatetime,$dateformat=DATE_FORMAT,$timeformat=
 
 function formatFromSQLTimestamp ($datetime,$dateformat=DATE_FORMAT,$timeformat=TIME_FORMAT) {
 	if($datetime=="")
-		return mktime();
+		return time();
 	$hour=0;
 	$minute=0;
 	$second=0;
@@ -393,7 +393,7 @@ function formatFromSQLTimestamp ($datetime,$dateformat=DATE_FORMAT,$timeformat=T
 	$day=1;
 	$year=1974;
 	settype($datetime, 'string');
-	eregi('(....)(..)(..)(..)(..)(..)',$datetime,$matches);
+	preg_match('/(.{4})(.{2})(.{2})(.{2})(.{2})(.{2})/',$datetime,$matches);
 	array_shift ($matches);	
 	foreach (array('year','month','day','hour','minute','second') as $var) {
 		$$var = (int) array_shift($matches);
@@ -430,6 +430,7 @@ function sqlTimeFromString($timestring,$format=TIME_FORMAT){
 // Currency functions
 //=====================================================================
 function numberToCurrency($number){
+	$number = (float) ($number ?? 0);
 	$currency="";
 	if($number<0)
 		$currency.="-";
@@ -441,7 +442,7 @@ function currencyToNumber($currency){
 	$number=str_replace(CURRENCY_SYM,"",$currency);
 	$number=str_replace(THOUSANDS_SEPARATOR,"",$number);
 	$number=str_replace(DECIMAL_SYMBOL,".",$number);
-	$number=((real) $number);
+	$number=((float) $number);
 	
 	return $number;
 }
@@ -482,7 +483,7 @@ function ordinal($number) {
 
     endif;
 
-    return "${number}$suffix";
+    return "{$number}$suffix";
 
 }
 
@@ -491,20 +492,12 @@ function addSlashesToArray($thearray){
 
 	//This function prepares an array for SQL manipulation.
 	
-	if(get_magic_quotes_runtime() || get_magic_quotes_gpc()){
-	
-		foreach ($thearray as $key=>$value) 
-			if(is_array($value))
-				$thearray[$key]= addSlashesToArray($value);
-			else
-				$thearray[$key] = mysql_real_escape_string(stripslashes($value));
-				
-	} else 	
-		foreach ($thearray as $key=>$value)
-			if(is_array($value))
-				$thearray[$key]= addSlashesToArray($value);				
-			else
-				$thearray[$key] = mysql_real_escape_string($value);
+	// magic_quotes removed in PHP 8 — always escape directly
+	foreach ($thearray as $key=>$value)
+		if(is_array($value))
+			$thearray[$key]= addSlashesToArray($value);
+		else
+			$thearray[$key] = mysql_real_escape_string($value);
 	
 	return $thearray;
 	
@@ -530,7 +523,7 @@ function htmlQuotes($string){
 	
 	}//endswitch
 	
-	return htmlspecialchars($string, ENT_COMPAT, $encoding);
+	return htmlspecialchars($string ?? "", ENT_COMPAT, $encoding);
 
 }
 

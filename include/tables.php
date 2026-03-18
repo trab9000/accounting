@@ -39,16 +39,41 @@
 
 
 class phpbmsTable{
-	
+
 	var $db = NULL;
 	var $backurl = NULL;
-	
+
 	// The table definition record id.
 	var $id=0;
-	
+
 	var $fields = array();
 
-	function phpbmsTable($db,$tabledefid = 0,$backurl = NULL){
+	// tabledefs columns populated by getTableInfo()
+	var $displayname;
+	var $type;
+	var $moduleid;
+	var $maintable;
+	var $querytable;
+	var $editfile;
+	var $editroleid;
+	var $addfile;
+	var $addroleid;
+	var $searchroleid;
+	var $advsearchroleid;
+	var $viewsqlroleid;
+	var $deletebutton;
+	var $defaultwhereclause;
+	var $defaultsortorder;
+	var $defaultsearchtype;
+	var $defaultcriteriafieldname;
+	var $defaultcriteriafindoptions;
+	var $defaultcriteriaselection;
+	var $createdby;
+	var $creationdate;
+	var $modifiedby;
+	var $modifieddate;
+
+	function __construct($db,$tabledefid = 0,$backurl = NULL){
 	
 		if(is_object($db))
 			if(get_class($db)=="db")
@@ -97,17 +122,17 @@ class phpbmsTable{
 					$default = 0;
 				break;
 				case "date":
-					$default=dateToString(mktime(),"SQL");
+					$default=dateToString(time(),"SQL");
 				break;
 				case "time":
-					$default=timeToString(mktime(),"SQL");
+					$default=timeToString(time(),"SQL");
 				break;
 				case "year":
-					$default=strftime("%Y");
+					$default=date("Y");
 				break;
 				case "datetime":
 				case "timestamp":
-					$default = dateToString(mktime(),"SQL")." ".timeToString(mktime(),"24 Hour");
+					$default = dateToString(time(),"SQL")." ".timeToString(time(),"24 Hour");
 				break;
 			}
 			
@@ -126,7 +151,7 @@ class phpbmsTable{
 						else
 							$value = "''";
 					} else					
-						$value = "'".$value."'";
+						$value = "'".mysql_real_escape_string($value)."'";
 				break;
 				
 				case "real":
@@ -136,7 +161,7 @@ class phpbmsTable{
 						else
 							$value = 0;
 					} else					
-						$value = (real) $value;
+						$value = (float) $value;
 				break;
 				
 				case "int":
@@ -154,7 +179,7 @@ class phpbmsTable{
 						if(strpos($flags,"not_null") === false)
 							$value = NULL;
 						else
-							$value = "'".dateToString(mktime(),"SQL")."'";
+							$value = "'".dateToString(time(),"SQL")."'";
 					} else
 						$value = "'".sqlDateFromString($value)."'";
 				break;
@@ -164,7 +189,7 @@ class phpbmsTable{
 						if(strpos($flags,"not_null") === false)
 							$value = NULL;
 						else
-							$value = "'".timeToString(mktime(),"SQL")."'";
+							$value = "'".timeToString(time(),"SQL")."'";
 					} else
 						$value = "'".sqlTimeFromString($value)."'";
 				break;
@@ -174,7 +199,7 @@ class phpbmsTable{
 						if(strpos($flags,"not_null") === false)
 							$value = NULL;
 						else
-							$value = strftime("%Y");
+							$value = date("Y");
 				break;
 				
 				case "datetime":
@@ -183,7 +208,7 @@ class phpbmsTable{
 						if(strpos($flags,"not_null") === false)
 							$value = NULL;
 						else
-							$value = "'".dateToString(mktime(),"SQL")." ".timeToString(mktime(),"24 Hour")."'";
+							$value = "'".dateToString(time(),"SQL")." ".timeToString(time(),"24 Hour")."'";
 					} else{
 						$datetimearray = explode(" ",$value);
 						if(count($datetimearray) > 1){
@@ -193,7 +218,7 @@ class phpbmsTable{
 					}
 				break;
 				case "password":
-					$value = "ENCODE('".$value."','".ENCRYPTION_SEED."')";
+					$value = "'".password_hash($value, PASSWORD_DEFAULT)."'";
 				break;		
 			}//end case
 

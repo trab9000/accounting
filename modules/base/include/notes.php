@@ -46,13 +46,13 @@ if(class_exists("phpbmsTable")){
 	var $dayOfWeekArray = array();
 	
 	
-	function notes($db,$tabledefid = 0,$backurl = NULL){
+	function __construct($db,$tabledefid = 0,$backurl = NULL){
 
 		$this->dayOfWeekArray[nl_langinfo(constant("DAY_1"))] = 7;
 		for($i=1; $i<=6; $i++)
 			$this->dayOfWeekArray[nl_langinfo( constant("DAY_".($i+1)) )] = $i;
 
-		parent::phpbmsTable($db,$tabledefid,$backurl);
+		parent::__construct($db,$tabledefid,$backurl);
 
 	}
 
@@ -61,7 +61,7 @@ if(class_exists("phpbmsTable")){
 		if($therecord["repeattype"] == "Weekly")
 			$daysSelected = explode("::",$therecord["repeateachlist"]);
 		else
-			$daysSelected = array(strftime("%u",$repeatbase));
+			$daysSelected = array(date("N",$repeatbase));
 			
 		$daysAvailable = array(7,1,2,3,4,5,6);
 		
@@ -86,7 +86,7 @@ if(class_exists("phpbmsTable")){
 		if($therecord["repeattype"] == "Monthly" && $therecord["repeateachlist"])
 			$daysSelected = explode("::",$therecord["repeateachlist"]);
 		else
-			$daysSelected = array(strftime("%e",$repeatbase));
+			$daysSelected = array(date("j",$repeatbase));
 			
 		
 		for($dayNum = 1; $dayNum <= 31; $dayNum++){
@@ -294,7 +294,7 @@ if(class_exists("phpbmsTable")){
 							$tempDate = mktime(0,0,0,$dateArray["tm_mon"]+1,1,$dateArray["tm_year"]+1900);
 							$weekday = $therecord["repeatontheday"];
 							$weekday = ($weekday == 7)? 1: ($weekday+1);							
-							if($therecord["repeatontheday"] != strftime("%u",$tempDate));
+							if($therecord["repeatontheday"] != date("N",$tempDate));
 								$tempDate = strtotime(nl_langinfo( constant("DAY_".$weekday) ),$tempDate);
 								
 							while(date("n",$tempDate) == ($dateArray["tm_mon"]+1)){
@@ -335,7 +335,7 @@ if(class_exists("phpbmsTable")){
 								
 								$weekday = $therecord["repeatontheday"];
 								$weekday = ($weekday == 7)? 1: ($weekday+1);							
-								if($therecord["repeatontheday"] != strftime("%u",$tempDate));
+								if($therecord["repeatontheday"] != date("N",$tempDate));
 									$tempDate = strtotime(nl_langinfo( constant("DAY_".$weekday) ),$tempDate);
 								
 								
@@ -699,7 +699,7 @@ if(class_exists("phpbmsTable")){
 		}//end endmethod
 
 	
-		function insertRecord($variables, $createdby = NULL){
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){
 			
 			if($createdby == NULL)
 				$createdby = $_SESSION["userinfo"]["id"];

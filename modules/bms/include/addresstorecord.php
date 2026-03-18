@@ -80,7 +80,7 @@ if(class_exists("addresses")){
 		
 		// CLASS OVERRIDES ===============================================
 		// ===============================================================
-		function getRecord($id){
+		function getRecord($id = 0){
 			$id = (int) $id;
 			
 			$querystatement = "
@@ -155,7 +155,7 @@ if(class_exists("addresses")){
 		}//end method
 		
 	
-		function insertRecord($variables, $createdby = NULL){
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){
 
 			$variables = $this->formatVariables($variables);
 

@@ -38,20 +38,22 @@
 */
 	function verifyLogin($username,$password,$db){
 		$thereturn = "Login Failed";
-		
-		$querystatement = "SELECT id, firstname, lastname, email, phone, department, employeenumber, admin
-						FROM users 
-						WHERE login=\"".mysql_real_escape_string($username)."\" 
-						AND password=ENCODE(\"".mysql_real_escape_string($password)."\",\"".mysql_real_escape_string(ENCRYPTION_SEED)."\") 
+
+		$querystatement = "SELECT id, firstname, lastname, email, phone, department, employeenumber, admin, password
+						FROM users
+						WHERE login=\"".mysqli_real_escape_string($db->db_link,$username)."\"
 						AND revoked=0 AND portalaccess=0";
-						
+
 		$queryresult = $db->query($querystatement);
-				
+
 		if($db->numRows($queryresult)){
-			
-			//We found a record that matches in the database
-			// populate the session and go in
-			$_SESSION["userinfo"]=$db->fetchArray($queryresult);
+			$userrecord = $db->fetchArray($queryresult);
+
+			if(!password_verify($password, $userrecord["password"]))
+				return "Login Failed";
+
+			unset($userrecord["password"]);
+			$_SESSION["userinfo"] = $userrecord;
 			
 			// Next get the users roles, and populate the session with them
 			$_SESSION["userinfo"]["roles"][]=0;

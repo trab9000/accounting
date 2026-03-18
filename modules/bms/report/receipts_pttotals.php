@@ -41,10 +41,12 @@ if(!class_exists("phpbmsReport"))
 	include("../../../report/report_class.php");
 
 class receiptsPTTotals extends phpbmsReport{
-	
-	function receiptsPTTotals($db){
 
-		parent::phpbmsReport($db);
+	var $queryresult;
+
+	function __construct($db){
+
+		parent::__construct($db);
 
 	}//end method
 	

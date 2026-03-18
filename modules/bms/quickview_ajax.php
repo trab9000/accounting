@@ -46,7 +46,7 @@ require("include/addresstorecord.php");
 
 class quickView{
 	
-	function quickView($db){
+	function __construct($db){
 	
 		$this->db = $db;
 				

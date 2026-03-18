@@ -41,13 +41,7 @@ if(class_exists("phpbmsTable")){
 	class files extends phpbmsTable{
 	
 		function getPicture($name){
-			if (function_exists('file_get_contents')) {
-				$file = addslashes(file_get_contents($_FILES[$name]['tmp_name']));
-			} else {
-				// If using PHP < 4.3.0 use the following:
-				$file = addslashes(fread(fopen($_FILES[$name]['tmp_name'], 'r'), filesize($_FILES[$name]['tmp_name'])));
-			}
-			
+			$file = file_get_contents($_FILES[$name]['tmp_name']);
 			return $file;
 		}
 		
@@ -82,7 +76,7 @@ if(class_exists("phpbmsTable")){
 		}//end method
 		
 		
-		function insertRecord($variables, $createdby = NULL){
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){
 		
 			$variables = $this->formatVariables($variables);
 	

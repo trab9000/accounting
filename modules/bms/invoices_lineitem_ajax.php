@@ -42,7 +42,9 @@ include("../../include/session.php");
 
 class productLookup{
 
-	function productLookup($db){
+	public $db;
+
+	function __construct($db){
 	
 		$this->db = $db;
 	

@@ -1,0 +1,46 @@
+services:
+
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    command: --sql-mode="NO_ENGINE_SUBSTITUTION"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: phpbms
+      MYSQL_USER: bmsuser
+      MYSQL_PASSWORD: bmspass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: rootpass
+    depends_on:
+      - db
+
+volumes:
+  db_data:

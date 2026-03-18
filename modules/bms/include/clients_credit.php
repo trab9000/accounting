@@ -4,7 +4,7 @@
 		var $db;
 		var $id = 0;
 	
-		function clientCredit($db, $id){
+		function __construct($db, $id){
 			$this->db = $db;
 			$this->id = (int) $id;
 		}//end method

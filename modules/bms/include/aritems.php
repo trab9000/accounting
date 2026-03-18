@@ -37,10 +37,11 @@
  +-------------------------------------------------------------------------+
 */
 class relatedClient{
+	var $db;
 	
 	var $clientid = 0;
 	
-	function relatedClient($db, $clientid){
+	function __construct($db, $clientid){
 	
 		$this->db = $db;
 		
@@ -83,8 +84,12 @@ class relatedClient{
 }//end class
 
 class aritemPayments{
+	var $db;
+	var $aritem;
+	var $queryresult;
+	var $totals;
 
-	function aritemPayments($db, $aritem){
+	function __construct($db, $aritem){
 		
 		$this->db = $db;
 		$this->aritem = $aritem;

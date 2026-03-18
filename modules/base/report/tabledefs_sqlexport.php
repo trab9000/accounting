@@ -53,9 +53,9 @@
 			
 		var $reportOutput = "";
 			
-		function sqlExport($db){
+		function __construct($db){
 		
-			parent::phpbmsReport($db);
+			parent::__construct($db);
 			
 		}//end method
 		
@@ -114,7 +114,7 @@
 					if($field === NULL)
 						$addfield = "NULL, ";
 					else
-						$addfield = "'".mysql_real_escape_string($field)."', ";
+						$addfield = "'".$this->db->escape($field)."', ";
 			
 					if($name != "id")
 						$insertstatement .= $addfield;

@@ -1,6 +1,7 @@
 <?php
 class VariableStream
 {
+	var $context;
 	// Stream handler to read from global variables
 	var $varname;
 	var $position;
@@ -39,9 +40,9 @@ class MEM_IMAGE extends FPDF
 	//
 	// CONSTRUCTOR
 	//
-	function MEM_IMAGE($orientation='P',$unit='mm',$format='A4')
+	function __construct($orientation='P',$unit='mm',$format='A4')
 	{
-		$this->FPDF($orientation, $unit, $format);
+		parent::__construct($orientation, $unit, $format);
 		//Register var stream protocol (requires PHP>=4.3.2)
 		if(function_exists('stream_wrapper_register'))
 			@ stream_wrapper_register('var','VariableStream');

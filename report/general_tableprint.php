@@ -44,11 +44,11 @@
 		var $maintable = "";
 		var $resultOutput = "";
 		
-		function generalTablePrint($db, $tabledefid){
+		function __construct($db, $tabledefid){
 		
 			$this->tabledefid = ((int) $tabledefid);
 			
-			parent::phpbmsReport($db);
+			parent::__construct($db);
 
 			$querystatement = "
 				SELECT 

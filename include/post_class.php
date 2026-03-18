@@ -6,7 +6,7 @@
 		var $whereclause = "";
 		var $modifiedby = NULL;
 		
-		function tablePost($db, $modifiedby = NULL){
+		function __construct($db, $modifiedby = NULL){
 			
 			$this->db = $db;
 			

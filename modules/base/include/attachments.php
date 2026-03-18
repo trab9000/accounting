@@ -40,7 +40,7 @@ if(class_exists("files")){
 	class attachments extends files{
 	
 	
-		function getRecord($id){
+		function getRecord($id = 0){
 			$id = (int) $id;
 			
 			$querystatement = "SELECT
@@ -82,7 +82,7 @@ if(class_exists("files")){
 		}
 		
 	
-		function insertRecord($variables, $createdby = NULL){
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){
 			
 			if($createdby == NULL)
 				$createdby = $_SESSION["userinfo"]["id"];

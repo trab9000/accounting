@@ -372,7 +372,7 @@ include("../include/session.php");
 							else {
 								$currenVersion = getCurrentVersion($db,"base");
 
-								if( ((real) $currenVersion) >= ((real) $_GET["v"]) )
+								if( ((float) $currenVersion) >= ((float) $_GET["v"]) )
 									$thereturn="No Update Needed for phpBMS Core.";
 								else
 									$thereturn="phpBMS Core Update Possible\n Current Data Version: ".$currenVersion;							
@@ -386,7 +386,7 @@ include("../include/session.php");
 							else {
 								$currenVersion = getCurrentVersion($db,$_GET["m"]);
 
-								if( ((real) $currenVersion) >= ((real) $_GET["mv"]) )
+								if( ((float) $currenVersion) >= ((float) $_GET["mv"]) )
 									$thereturn="No Update Needed for Current Module.";
 								else
 									$thereturn="Module Update Possible\n Current Data Version: ".$currenVersion;							
@@ -400,7 +400,7 @@ include("../include/session.php");
 							else {
 								$currenVersion = getCurrentVersion($db,"base");
 
-								if( ((real) $currenVersion) >= ((real) $_GET["v"]) )
+								if( ((float) $currenVersion) >= ((float) $_GET["v"]) )
 									$thereturn="No Update Needed for phpBMS Core.";
 								else
 									$thereturn = runUpdate($db, $currenVersion, $_GET["v"]);							

@@ -42,7 +42,7 @@
 	if(!hasRights(30)) goURL(APP_PATH."noaccess.php");
 	
 	if(!isset($_POST["fromdate"])) $_POST["fromdate"]=dateToString(strtotime("-1 year"));
-	if(!isset($_POST["todate"])) $_POST["todate"]=dateToString(mktime());
+	if(!isset($_POST["todate"])) $_POST["todate"]=dateToString(time());
 	if(!isset($_POST["status"])) $_POST["status"]="Orders/Invoices";
 	if(!isset($_POST["command"])) $_POST["command"]="show";
 

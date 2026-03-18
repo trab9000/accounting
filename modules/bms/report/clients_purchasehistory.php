@@ -42,13 +42,13 @@ if(!isset($fromClient)) {
 }
 	
 class purchaseHistoryReport{
-	
+
 	var $whereclause="";
 	var $sortorder=" ORDER BY if(clients.lastname!=\"\",concat(clients.lastname,\", \",clients.firstname,if(clients.company!=\"\",concat(\" (\",clients.company,\")\"),\"\")),clients.company) ";
 	var $fromdate;
 	var $todate;
 	var $view;
-
+	var $db;
 	var $clientQuery;
 	
 	function initialize($variables,$db){
@@ -208,7 +208,7 @@ TH {
 		</li>
 		<li>
 			date generated:<br />
-			<?php echo dateToString(mktime())." ".timeToString(mktime());?>
+			<?php echo dateToString(time())." ".timeToString(time());?>
 		</li>
 		<li style="padding-left:30px;padding-right:20px;">
 			view:<br />

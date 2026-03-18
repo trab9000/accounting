@@ -42,7 +42,7 @@
 	class choiceList{
 		var $db;
 		
-		function choiceList($db){
+		function __construct($db){
 			$this->db = $db;
 		}
 	

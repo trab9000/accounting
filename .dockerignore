@@ -1,0 +1,5 @@
+.git/
+docs/
+_bmad/
+_bmad-output/
+*.tar.gz

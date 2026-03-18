@@ -380,8 +380,8 @@ if(class_exists("phpbmsTable")){
 				
 			$therecord["type"] = "Order";
 			$therecord["statusid"] = $this->getDefaultStatus();
-			$therecord["orderdate"] = dateToString(mktime(),"SQL");
-			$therecord["statusdate"] = dateToString(mktime(),"SQL");
+			$therecord["orderdate"] = dateToString(time(),"SQL");
+			$therecord["statusdate"] = dateToString(time(),"SQL");
 			$therecord["printedinstructions"] = INVOICE_DEFAULT_PRINTINSTRUC;
 
 			$therecord["discountid"] = DEFAULT_DISCOUNT;
@@ -405,7 +405,7 @@ if(class_exists("phpbmsTable")){
 		}
 		
 		
-		function getRecord($id){
+		function getRecord($id = 0){
 		
 			$therecord = parent::getRecord($id);
 	
@@ -441,14 +441,14 @@ if(class_exists("phpbmsTable")){
 					
 			$variables["totaltni"] = currencyToNumber($variables["totaltni"]);
 			$variables["discountamount"] = currencyToNumber($variables["discountamount"]);
-			$variables["totaltaxable"] = ((real) $variables["totaltaxable"]);
+			$variables["totaltaxable"] = ((float) $variables["totaltaxable"]);
 			$variables["totalti"] = currencyToNumber($variables["totalti"]);
 			$variables["shipping"] = currencyToNumber($variables["shipping"]);
 			$variables["tax"] = currencyToNumber($variables["tax"]);
 			$variables["amountpaid"] = currencyToNumber($variables["amountpaid"]);	
 	
 			if($variables["type"]=="Invoice" && $variables["invoicedate"] == "")
-				$variables["invoicedate"] = dateToString(mktime());
+				$variables["invoicedate"] = dateToString(time());
 	
 			if($variables["taxpercentage"]=="" or  $variables["taxpercentage"]=="0" or $variables["taxpercentage"]=="0.0")
 				$variables["taxpercentage"]="NULL";
@@ -633,7 +633,7 @@ if(class_exists("phpbmsTable")){
 	
 	
 	
-		function insertRecord($variables, $createdby = NULL){
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){
 	
 			if($createdby === NULL)
 				$createdby = $_SESSION["userinfo"]["id"];
@@ -663,10 +663,13 @@ if(class_exists("phpbmsTable")){
 	// LINE ITEMS CLASS 
 	// ==============================================================================================
 	class lineitems{
-	
+
 		var $queryresult = NULL;
+		var $db;
+		var $invoiceid;
+		var $invoicetype;
 	
-		function lineitems($db, $invoiceid, $invoicetype = "Order"){
+		function __construct($db, $invoiceid, $invoicetype = "Order"){
 			
 			$this->db = $db;
 			$this->invoiceid = ((int) $invoiceid);
@@ -794,10 +797,10 @@ if(class_exists("phpbmsTable")){
 							".((int) $itemRecord[0]).",
 							'".$itemRecord[1]."',
 							".((int) $itemRecord[2]).",
-							".((real) $itemRecord[3]).",
-							".((real) $itemRecord[4]).",
-							".((real) $itemRecord[5]).",
-							".((real) $itemRecord[6]).",
+							".((float) $itemRecord[3]).",
+							".((float) $itemRecord[4]).",
+							".((float) $itemRecord[5]).",
+							".((float) $itemRecord[6]).",
 							".$count.",
 							".$userid.",
 							NOW(),
@@ -1175,9 +1178,9 @@ function defineInvoicePost(){
 
 	class invoicePost extends tablePost{
 		
-		function invoicePost($db, $modifiedby = NULL){
+		function __construct($db, $modifiedby = NULL){
 			
-			parent::tablePost($db, $modifiedby);
+			parent::__construct($db, $modifiedby);
 			
 		}//end method
 

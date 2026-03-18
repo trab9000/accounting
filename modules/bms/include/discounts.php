@@ -52,7 +52,7 @@ if(class_exists("phpbmsTable")){
 		function formatValue($variables){
 		
 			if($variables["type"] == "percent")
-				$variables["value"] = ((real) str_replace("%","",$variables["percentvalue"]));
+				$variables["value"] = ((float) str_replace("%","",$variables["percentvalue"]));
 			else 
 				$variables["value"] =  currencyToNumber($variables["amountvalue"]);
 		

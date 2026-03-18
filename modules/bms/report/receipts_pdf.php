@@ -49,11 +49,17 @@
 		include("report/report_class.php");
 		
 	class receiptPDF extends phpbmsReport{
-	
+
 		var $title = "Receipt";
 		var $lineitemBoxHeight = 4.25;
+		var $pdf;
+		var $topinfo;
+		var $lineitems;
+		var $totalsinfo;
+		var $page;
+		var $receiptrecord;
 			
-		function receiptPDF($db, $orientation='P', $unit='mm', $format='Letter'){
+		function __construct($db, $orientation='P', $unit='mm', $format='Letter'){
 		
 			$this->db = $db;
 			

@@ -47,11 +47,8 @@
 			echo "<option>Could Not Open Settings File</option>";
 			return false;
 		}
-		if($vars["mysql_pconnect"]=="true")
-			$dblink = @  mysql_pconnect($vars["mysql_server"],$vars["mysql_user"],$vars["mysql_userpass"]);
-		else
-			$dblink = @  mysql_connect($vars["mysql_server"],$vars["mysql_user"],$vars["mysql_userpass"]);
-		@ mysql_select_db($vars["mysql_database"],$dblink);
+		$host = ($vars["mysql_pconnect"]=="true") ? "p:".$vars["mysql_server"] : $vars["mysql_server"];
+		$dblink = @mysqli_connect($host, $vars["mysql_user"], $vars["mysql_userpass"], $vars["mysql_database"]);
 		
 		$querystatement="SELECT name,version FROM modules WHERE name!=\"base\" ";
 		$queryresult=$db->query($querystatement);

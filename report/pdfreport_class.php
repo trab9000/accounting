@@ -44,11 +44,11 @@
 		var $format;
 		var $align = "L";
 	
-		function pdfColumn($title, $fieldname, $size = 1, $format = "", $align = "L"){
+		function __construct($title, $fieldname, $size = 1, $format = "", $align = "L"){
 		
 			$this->title = $title;
 			$this->fieldname = $fieldname;
-			$this->size = ((real) $size);
+			$this->size = ((float) $size);
 			$this->format = $format;
 			$this->align = $align;
 		
@@ -62,7 +62,7 @@
 		var $g = 0;
 		var $b = 0;
 
-		function pdfColor($r = 0,$g = 0,$b = 0){
+		function __construct($r = 0,$g = 0,$b = 0){
 		
 			$this->r = $r;
 			$this->g = $g;
@@ -79,7 +79,7 @@
 		var $style = "";
 		var $size = 8;
 		
-		function pdfFont($family = "Arial", $style ="", $size = 8){
+		function __construct($family = "Arial", $style ="", $size = 8){
 			
 			$this->family = $family;
 			$this->style = $style;
@@ -96,7 +96,7 @@
 		var $textColor = NULL;
 		var $backgroundColor = NULL;
 		
-		function pdfStyle($font = NULL, $textColor = NULL, $backgroundColor = NULL){
+		function __construct($font = NULL, $textColor = NULL, $backgroundColor = NULL){
 			
 			if($font) $this->font = $font;
 			if($textColor) $this->textColor = $textColor;
@@ -116,7 +116,8 @@
 
 	class phpbmsPDFReport extends MEM_IMAGE {
 	
-		var $borderDebug = 0;
+		var $db;
+	var $borderDebug = 0;
 	
 		var $leftmargin = 0.5;
 		var $rightmargin = 0.5;
@@ -130,11 +131,11 @@
 		var $styles = array();
 		
 	
-		function phpbmsPDFReport($db, $orientation='P', $unit='mm', $format='Letter'){
+		function __construct($db, $orientation='P', $unit='mm', $format='Letter'){
 		
 			$this->db = $db;
 			
-			parent::MEM_IMAGE($orientation, $unit, $format);
+			parent::__construct($orientation, $unit, $format);
 			
 			$this->initStyles();
 			$this->SetLineWidth(0.01);
@@ -206,7 +207,7 @@
 		}//end if
 
 
-		function SetMargins(){
+		function SetMargins($left = -1, $top = -1, $right = -1){
 						
 			parent::SetMargins($this->leftmargin, $this->topmargin, $this->rightmargin);
 			

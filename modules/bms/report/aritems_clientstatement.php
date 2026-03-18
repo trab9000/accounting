@@ -42,6 +42,12 @@ if(!class_exists("phpbmsReport"))
 
 class aritemsClientStatements extends phpbmsReport{
 
+	var $statementDate;
+	var $pdf;
+	var $itemColumns;
+	var $itmeAreaHeight;
+	var $page;
+	var $clientrecord;
 	var $currentTotal = 0;
 	var $term1Total = 0;
 	var $term2Total = 0;
@@ -49,9 +55,9 @@ class aritemsClientStatements extends phpbmsReport{
 	var $showPayments = true;
 	var $showClosed = false;
 	
-	function aritemsClientStatements($db, $statementDate = NULL, $showPayments = true, $showClosed = false){
+	function __construct($db, $statementDate = NULL, $showPayments = true, $showClosed = false){
 	
-		parent::phpbmsReport($db);
+		parent::__construct($db);
 
 		if($statementDate)
 			$this->statementDate = $statementDate;

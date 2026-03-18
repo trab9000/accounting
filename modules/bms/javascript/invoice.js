@@ -390,18 +390,19 @@ client = {
 						
 					default:
 						tempitem = getObjectFromID(prop);
-						if(tempitem)
+						if(tempitem){
 							tempitem.value = clientRecord[prop];
 	
-						//legeacy
-						if(tempitem.onchange) tempitem.onchange.call(tempitem);
+							//legeacy
+							if(tempitem.onchange) tempitem.onchange.call(tempitem);
 	
-						trigger(tempitem,"onchange");
-												
-						//legacy
-						if(tempitem.onblur) tempitem.onblur.call(theitem);
-						
-						trigger(tempitem, "onblur");
+							trigger(tempitem,"onchange");
+	
+							//legacy
+							if(tempitem.onblur) tempitem.onblur.call(tempitem);
+	
+							trigger(tempitem, "onblur");
+						}
 						break;
 					
 				}//endswitch prop

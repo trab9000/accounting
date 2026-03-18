@@ -1,0 +1,145 @@
+{
+  "workflow_version": "1.2.0",
+  "timestamps": {
+    "started": "2026-03-16T00:00:00Z",
+    "last_updated": "2026-03-16T00:00:00Z",
+    "completed": "2026-03-16T00:00:00Z"
+  },
+  "mode": "initial_scan",
+  "scan_level": "deep",
+  "project_root": "/home/bart/accounting",
+  "project_knowledge": "/home/bart/accounting/docs",
+  "completed_steps": [
+    {
+      "step": "step_0.5",
+      "status": "completed",
+      "timestamp": "2026-03-16T00:00:00Z",
+      "outputs": [],
+      "summary": "Loaded documentation requirements CSV context. Project type detected as 'web' with PHP MPA characteristics. No prior docs existed — full initial scan required."
+    },
+    {
+      "step": "step_1",
+      "status": "completed",
+      "timestamp": "2026-03-16T00:00:00Z",
+      "outputs": [],
+      "summary": "Explored project root, include/, modules/, common/, report/, fpdf/. Confirmed single-part monolith: PHP 4.3+ MPA, MySQL 3.23+, no package manager, no build tooling."
+    },
+    {
+      "step": "step_2",
+      "status": "completed",
+      "timestamp": "2026-03-16T00:00:00Z",
+      "outputs": [],
+      "summary": "Read key source files: session.php, common_functions.php, tables.php, search_class.php, fields.php, header.php, menu_class.php, db.php (implied). Read SQL install scripts: modules/bms/install/createtables.sql for full schema. Read module include classes: users.php, clients.php, invoices.php, relationships.php."
+    },
+    {
+      "step": "step_3",
+      "status": "completed",
+      "timestamp": "2026-03-16T00:00:00Z",
+      "outputs": ["docs/index.md", "docs/project-overview.md"],
+      "summary": "Generated index.md (master documentation index) and project-overview.md (executive summary, tech stack table, key features, architecture highlights, development overview)."
+    },
+    {
+      "step": "step_4",
+      "status": "completed",
+      "timestamp": "2026-03-16T00:00:00Z",
+      "outputs": ["docs/source-tree-analysis.md"],
+      "summary": "Generated source-tree-analysis.md. Full annotated directory tree covering all 200+ PHP files, 48 JS files, 63 CSS files, and 97 SQL files. Documented critical directories, entry points, file naming conventions, and configuration files."
+    },
+    {
+      "step": "step_5",
+      "status": "completed",
+      "timestamp": "2026-03-16T00:00:00Z",
+      "outputs": ["docs/data-models.md"],
+      "summary": "Generated data-models.md. Documented all 30+ database tables with column names, types, constraints, and relationships. Includes base module tables (users, roles, tabledefs family, notes, files, log, settings, scheduler) and BMS module tables (clients, invoices, lineitems, products, aritems, receipts, receiptitems, addresses, discounts, tax, taxareas, shippingmethods, paymentmethods, invoicestatuses, recurringinvoices). ERD summary included."
+    },
+    {
+      "step": "step_6",
+      "status": "completed",
+      "timestamp": "2026-03-16T00:00:00Z",
+      "outputs": ["docs/architecture.md"],
+      "summary": "Generated architecture.md. Covered: request lifecycle, module architecture, core class hierarchy, database access layer, authentication (session + API), role-based access control, UI architecture (CSS/JS inclusion, jstransport bridge, AJAX fragment pattern), table-driven UI configuration, report architecture, recurring invoice scheduler, invoice creation data flow, and security analysis."
+    },
+    {
+      "step": "step_7",
+      "status": "completed",
+      "timestamp": "2026-03-16T00:00:00Z",
+      "outputs": ["docs/development-guide.md"],
+      "summary": "Generated development-guide.md. Covered: prerequisites, initial setup (settings.php format, DB creation, installer), dev server, configuration constants, how to add fields/pages/modules, CSS/JS modification, schema migrations, debugging, scheduler setup, report creation, no-test-suite note, and version upgrade process."
+    },
+    {
+      "step": "step_8",
+      "status": "completed",
+      "timestamp": "2026-03-16T00:00:00Z",
+      "outputs": ["docs/component-inventory.md"],
+      "summary": "Generated component-inventory.md. Catalogued all PHP classes (db, appError, phpbmsLog, phpbmsSession, phpbms, phpbmsTable and all subclasses, displayTable, phpbmsForm and all inputField subclasses, topMenu, phpbmsReport, phpbmsPDFReport, module-specific classes), all global utility functions, all JavaScript components (common.js, fields.js, menu.js, queryfunctions.js, datepicker.js, timepicker.js, choicelist.js, smartsearch.js, print.js, login.js, moo library), and UI patterns."
+    }
+  ],
+  "current_step": "completed",
+  "findings": {
+    "project_classification": {
+      "repository_type": "single",
+      "parts_count": 1,
+      "primary_language": "PHP",
+      "architecture_type": "Multi-Page Application (MPA), server-rendered, module-based"
+    },
+    "technology_stack": [
+      {
+        "part_id": "main",
+        "tech_summary": "PHP 4.3+ (mysql_* extension), MySQL 3.23+ (MyISAM), MooTools 1.x, Prototype.lite, FPDF 1.x, Apache/mod_php, no build tooling"
+      }
+    ],
+    "batches_completed": [
+      {
+        "path": "include/",
+        "files_scanned": 13,
+        "summary": "Core infrastructure: db, session, form, table ORM, search display, menu, relationships"
+      },
+      {
+        "path": "modules/base/",
+        "files_scanned": 38,
+        "summary": "Admin module: users, roles, tabledefs, menu, notes, files, scheduler, settings"
+      },
+      {
+        "path": "modules/bms/",
+        "files_scanned": 55,
+        "summary": "Business module: clients, invoices, products, AR, receipts, discounts, taxes, shipping, payments"
+      },
+      {
+        "path": "modules/recurringinvoices/",
+        "files_scanned": 6,
+        "summary": "Recurring invoice scheduler: recurrence rules, cron runner"
+      },
+      {
+        "path": "modules/bms/install/",
+        "files_scanned": 20,
+        "summary": "SQL schema: createtables.sql (all BMS tables), 8 update migration scripts, seed data"
+      },
+      {
+        "path": "common/javascript/",
+        "files_scanned": 10,
+        "summary": "Client-side JS: AJAX utilities, form validation, menu animation, date/time pickers, MooTools"
+      },
+      {
+        "path": "report/",
+        "files_scanned": 6,
+        "summary": "Report base classes: phpbmsReport (HTML), phpbmsPDFReport (FPDF), 4 generic runners"
+      }
+    ]
+  },
+  "outputs_generated": [
+    "/home/bart/accounting/docs/index.md",
+    "/home/bart/accounting/docs/project-overview.md",
+    "/home/bart/accounting/docs/source-tree-analysis.md",
+    "/home/bart/accounting/docs/data-models.md",
+    "/home/bart/accounting/docs/architecture.md",
+    "/home/bart/accounting/docs/development-guide.md",
+    "/home/bart/accounting/docs/component-inventory.md",
+    "/home/bart/accounting/docs/project-scan-report.json"
+  ],
+  "resume_instructions": "Workflow is complete. All 7 documentation files and this state file have been written to /home/bart/accounting/docs/. No resumption needed.",
+  "validation_status": {
+    "last_validated": "2026-03-16T00:00:00Z",
+    "validation_errors": []
+  },
+  "deep_dive_targets": []
+}

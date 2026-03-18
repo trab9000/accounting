@@ -42,11 +42,17 @@
 		
 	class invoicePDF extends phpbmsReport{
 	
-		var $title = "Invoice";
+		var $pdf;
+	var $topinfo;
+	var $lineitems;
+	var $totalsinfo;
+	var $page;
+	var $invoicerecord;
+	var $title = "Invoice";
 		var $showShipNameInShipTo = true;
 		var $lineitemBoxHeight = 4.25;
 			
-		function invoicePDF($db, $orientation='P', $unit='mm', $format='Letter'){
+		function __construct($db, $orientation='P', $unit='mm', $format='Letter'){
 		
 			$this->db = $db;
 			

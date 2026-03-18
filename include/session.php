@@ -1,4 +1,7 @@
 <?php
+ob_start();
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
 /*
  $Rev: 388 $ | $LastChangedBy: brieb $
  $LastChangedDate: 2008-05-07 12:30:58 -0600 (Wed, 07 May 2008) $
@@ -48,7 +51,7 @@ class appError{
 	var $logerror=true;
 	var $format="xhtml";
 	
-	function appError($number=0,$details="",$title="",$display=false,$stop=true,$logerror=true,$format="xhtml"){
+	function __construct($number=0,$details="",$title="",$display=false,$stop=true,$logerror=true,$format="xhtml"){
 		$this->title = $title;
 		
 		
@@ -151,7 +154,7 @@ class phpbmsLog{
 	var $value="";
 	var $userid=2;
 	
-	function phpbmsLog($value=NULL,$type=NULL,$userid=NULL,$db=NULL,$sendLog=true){
+	function __construct($value=NULL,$type=NULL,$userid=NULL,$db=NULL,$sendLog=true){
 
 		//in most cases, it is prudent for the log object to have it's own DB object
 		// so that it can properly supress errors without goofing things up.
@@ -239,8 +242,8 @@ class phpbmsSession{
 				$value=NULL;
 				$line=fscanf($settingsfile,"%[^=]=%[^[]]",$key,$value);
 				if ($line){
-					$key=trim($key);
-					$value=trim($value);
+					$key=trim($key ?? "");
+					$value=trim($value ?? "");
 					if($key!="" and !strpos($key,"]")){	
 						$startpos=strpos($value,"\"");
 						$endpos=strrpos($value,"\"");
@@ -357,21 +360,24 @@ class phpbmsSession{
 		$thereturn=false;
 		$this->db->stopOnError = false;
 		
-		$querystatement = "SELECT id, firstname, lastname, email, phone, department, employeenumber, admin
-						FROM users 
-						WHERE login!=\"Scheduler\" AND login=\"".mysql_real_escape_string($user)."\" 
-						AND password=ENCODE(\"".mysql_real_escape_string($pass)."\",\"".mysql_real_escape_string(ENCRYPTION_SEED)."\") 
+		$querystatement = "SELECT id, firstname, lastname, email, phone, department, employeenumber, admin, password
+						FROM users
+						WHERE login!=\"Scheduler\" AND login=\"".mysql_real_escape_string($user)."\"
 						AND revoked=0 AND portalaccess=1";
 		$queryresult = $this->db->query($querystatement);
 		if(!$queryresult) {
 			$error = new appError(-720,"","Error retrieving user record",true,true,true,"json");
 			return false;
 		}
-		
+
 		if($this->db->numRows($queryresult)){
-			//We found a record that matches in the database
-			// populate the session and go in
-			$_SESSION["userinfo"]=$this->db->fetchArray($queryresult);
+			$userrecord = $this->db->fetchArray($queryresult);
+
+			if(!password_verify($pass, $userrecord["password"]))
+				return false;
+
+			unset($userrecord["password"]);
+			$_SESSION["userinfo"] = $userrecord;
 		
 			$querystatement="UPDATE users SET modifieddate=modifieddate, lastlogin=Now() WHERE id = ".$_SESSION["userinfo"]["id"];
 			$queryresult=@ $this->db->query($querystatement);
@@ -388,37 +394,17 @@ class phpbmsSession{
 
 // Start Code
 //=================================================================================================================
-//php <4.3.0 compatibility
+// PHP 8 compatibility: mysql_real_escape_string was removed in PHP 7.
+// Provide a polyfill using the global $db object.
 if(!function_exists("mysql_real_escape_string")){
 	function mysql_real_escape_string($string){
-		return mysql_escape_string($string);
+		global $db;
+		if(isset($db) && $db->db_link)
+			return mysqli_real_escape_string($db->db_link, $string ?? '');
+		// fallback before db is connected
+		return addslashes($string);
 	}
-	
-   function utf8_replaceEntity($result){
-	   $value = (int)$result[1];
-	   $string = '';
-	  
-	   $len = round(pow($value,1/8));
-	  
-	   for($i=$len;$i>0;$i--){
-		   $part = ($value & (255>>2)) | pow(2,7);
-		   if ( $i == 1 ) $part |= 255<<(8-$len);
-		  
-		   $string = chr($part) . $string;
-		  
-		   $value >>= 6;
-	   }
-	  
-	   return $string;
-   }
-  
-	if(!function_exists("mysql_real_escape_string")){
-		function html_entity_decode($string){
-			return preg_replace_callback('/&#([0-9]+);/u','utf8_replaceEntity',$string);
-		}//end function
-	}//end if
-
-}// end PHP<4.3 compatibility
+}
 
 
 // Start Login verification Code

@@ -53,7 +53,7 @@
 			if($queryresult){
 				$therecord=$db->fetchArray($queryresult);
 				
-				$themessage=stripslashes(str_replace("[[todays_date]]",dateToString(mktime()),$themessage));
+				$themessage=stripslashes(str_replace("[[todays_date]]",dateToString(time()),$themessage));
 				foreach($therecord as $key=>$value)
 					$themessage=str_replace("[[".$key."]]",$value,$themessage);
 				

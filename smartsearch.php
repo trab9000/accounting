@@ -37,15 +37,21 @@
  +-------------------------------------------------------------------------+
 */
 
-session_cache_limiter('private');
+ini_set('display_errors', '0');
+error_reporting(0);
+session_cache_limiter('nocache');
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Pragma: no-cache');
 
 include("include/session.php");
 
 class smartSearch{
 
 	var $totalcount = 0;
+	public $db;
+	public $searchParams;
 
-	function smartSearch($db, $sdbid){
+	function __construct($db, $sdbid){
 		
 		$this->db = $db;
 		
@@ -71,7 +77,7 @@ class smartSearch{
 
 	function find($term, $offset=0){
 
-		$term = trim(mysql_real_escape_string($term));
+		$term = trim(mysqli_real_escape_string($this->db->db_link, $term));
 		
 		// first we take the entered text and explode int by words
 		$terms = explode(" ",$term);

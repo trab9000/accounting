@@ -50,7 +50,7 @@ if(class_exists("phpbmsTable")){
 			$therecord["mo"]="*";
 			$therecord["day"]="*";
 			
-			$therecord["startdate"]=dateToString(mktime(),"SQL");
+			$therecord["startdate"]=dateToString(time(),"SQL");
 			$therecord["starttime"]="";
 		
 			$therecord["enddate"]="";
@@ -124,7 +124,7 @@ if(class_exists("phpbmsTable")){
 		}
 	
 	
-		function insertRecord($variables, $createdby = NULL){
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){
 	
 			$variables = $this->prepareVariables($variables);
 		

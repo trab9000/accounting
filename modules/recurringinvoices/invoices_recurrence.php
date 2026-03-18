@@ -103,8 +103,8 @@
 		if(!$therecord["ontheday"]){
 			 $theinput->setAttribute("disabled","disabled");
 			 $theinput2->setAttribute("disabled","disabled");
-			 $theinput->value = strftime("%u",$invoiceDate);
-			 $theinput2->value = strftime("%u",$invoiceDate);
+			 $theinput->value = date("N",$invoiceDate);
+			 $theinput2->value = date("N",$invoiceDate);
 		}
 		$theform->addField($theinput);
 		$theform->addField($theinput2);

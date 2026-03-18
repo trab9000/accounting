@@ -47,7 +47,7 @@ if(class_exists("phpbmsTable")){
 		}
 	
 	
-		function insertRecord($variables, $createdby = NULL){	
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){	
 			$theid = parent::insertRecord($variables, $createdby);
 			
 			if(isset($variables["userschanged"]))

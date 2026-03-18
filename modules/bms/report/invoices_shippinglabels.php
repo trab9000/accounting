@@ -37,6 +37,9 @@
  +-------------------------------------------------------------------------+
 */
 
+	session_cache_limiter('private');
+	require_once("../../../include/session.php");
+
 	if($_SESSION["printing"]["sortorder"])
 		$sortorder=$_SESSION["printing"]["sortorder"];
 	else
@@ -111,8 +114,6 @@
 		return $pdf;
 	}
 
-	session_cache_limiter('private');	
-	require_once("../../../include/session.php");		
 	require_once("../../../fpdf/fpdf.php");
 	require("../../../report/general_labels.php");	
 ?>

@@ -48,7 +48,7 @@
 		
 		var $db;		
 		
-		function printer($db,$tableid,$theids){
+		function __construct($db,$tableid,$theids){
 			$this->db = $db;
 			$this->tableid = $tableid;
 			$this->theids = $theids;
@@ -116,6 +116,7 @@
 		}//end method
 		
 		function displayReportList(){
+			global $phpbms;
 			?>
 		   <select name="choosereport[]" id="choosereport" size="12" multiple="multiple" onchange="switchReport(this)">
 			<?php

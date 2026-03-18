@@ -39,7 +39,7 @@
 	
 	class tableOptions {
 	
-		function tableOptions($db, $tabledefid){
+		function __construct($db, $tabledefid){
 			
 			$this->db = $db;
 			$this->tabledefid = ((int) $tabledefid);

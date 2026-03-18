@@ -80,7 +80,7 @@
 	$pdf->SetFont("Arial","B",16);
 	$pdf->Cell($tempwidth,.25,"Clients Notes Summary",$border_debug,1,"L");
 	$pdf->SetFont("Arial","",12);
-	$pdf->Cell($tempwidth,.18,"Date Created: ".dateToString(mktime()),$border_debug,1,"L");
+	$pdf->Cell($tempwidth,.18,"Date Created: ".dateToString(time()),$border_debug,1,"L");
 	$pdf->SetLineWidth(.04);
 	$pdf->Line($leftmargin,$pdf->GetY(),$paperwidth-$rightmargin,$pdf->GetY());
 	

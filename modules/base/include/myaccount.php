@@ -14,15 +14,18 @@ function displayRoles($db){
 
 function changePassword($variables,$id,$db){
 	if(DEMO_ENABLED=="false"){
-		$querystatement="SELECT id FROM users WHERE id=".$id." AND password=ENCODE(\"".$variables["curPass"]."\",\"".mysql_real_escape_string(ENCRYPTION_SEED)."\")";
+		$querystatement="SELECT password FROM users WHERE id=".$id;
 		$queryresult=$db->query($querystatement);
-		if($queryresult)
-			if ($db->numRows($queryresult)){
-				$querystatement="UPDATE users SET password=ENCODE(\"".$variables["newPass"]."\",\"".ENCRYPTION_SEED."\") WHERE id=".$id;
-				$queryresult=$db->query($querystatement);
-				return "Password Updated";
-			} else 
-				return "Current Password Incorrect";			
+		if($queryresult && $db->numRows($queryresult)){
+			$userrecord=$db->fetchArray($queryresult);
+			if(!password_verify($variables["curPass"], $userrecord["password"]))
+				return "Current Password Incorrect";
+			$newhash = password_hash($variables["newPass"], PASSWORD_DEFAULT);
+			$querystatement="UPDATE users SET password='".mysql_real_escape_string($newhash)."' WHERE id=".$id;
+			$db->query($querystatement);
+			return "Password Updated";
+		} else
+			return "Current Password Incorrect";
 	} else
 		return "Changing password is disbabled in demonstration mode.";
 }

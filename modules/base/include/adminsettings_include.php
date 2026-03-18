@@ -43,7 +43,7 @@
 class settings{
 	var $db;
 	
-	function settings($db){
+	function __construct($db){
 	
 		$this->db = $db;
 	
@@ -155,30 +155,10 @@ class settings{
 	
 
 	function updateEncyptionSeed($newseed,$currpassword,$userid){
-	
-		$userid = (int) $userid;
-	
-		//first let's make sure the password matches
-		$querystatement="SELECT id FROM users WHERE id=".$userid." AND password=ENCODE('".$currpassword."','".ENCRYPTION_SEED."')";
-		$queryresult=$this->db->query($querystatement);
-
-		if(!$this->db->numRows($queryresult))
-			return "Encryption Seed not Updated: Invalid Current Password";
-		
-		//let's update the encryption seed then
-		$querystatement="UPDATE settings SET value='".$newseed."' WHERE name='encryption_seed'";
-		$queryresult=$this->db->query($querystatement);
-			
-		//last, reencode the current password
-		$querystatement="UPDATE users SET password=ENCODE('".$currpassword."','".$newseed."') WHERE id=".$userid;
-		$queryresult=$this->db->query($querystatement);
-
-		//rencode all other passwords
-		$querystatement="UPDATE users SET password = ENCODE(DECODE(password,'".ENCRYPTION_SEED."'),'".$newseed."') WHERE id !=".$userid;
-		$queryresult=$this->db->query($querystatement);
-			
-		return "Encryption Seed Updated.";
-	}	
+		// Encryption seed is no longer used — passwords are now hashed with PHP's
+		// password_hash() (bcrypt) and are not reversible or seed-dependent.
+		return "Encryption Seed is no longer applicable. Passwords use bcrypt hashing.";
+	}
 
 
 	function processForm($variables){

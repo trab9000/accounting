@@ -5,7 +5,7 @@ class ical {
 	var $userinfo = array();
 	var $vEvents = array();
 
-	function ical($db,$userid){
+	function __construct($db,$userid){
 		$this->db = $db;
 		
 		$this->_getUserInfo($userid);

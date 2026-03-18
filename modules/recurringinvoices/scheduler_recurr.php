@@ -5,7 +5,7 @@ if(!class_exists("appError"))
 
 class recurr{
 
-	function recurr($db){
+	function __construct($db){
 		$this->db = $db;
 	}
 
@@ -98,7 +98,7 @@ class recurr{
 						$tempDate = mktime(0,0,0,$dateArray["tm_mon"]+1,1,$dateArray["tm_year"]+1900);
 						$weekday = $therecord["ontheday"];
 						$weekday = ($weekday == 7)? 1: ($weekday+1);							
-						if($therecord["ontheday"] != strftime("%u",$tempDate));
+						if($therecord["ontheday"] != date("N",$tempDate));
 							$tempDate = strtotime(nl_langinfo( constant("DAY_".$weekday) ),$tempDate);
 							
 						while(date("n",$tempDate) == ($dateArray["tm_mon"]+1)){
@@ -139,7 +139,7 @@ class recurr{
 							
 							$weekday = $therecord["ontheday"];
 							$weekday = ($weekday == 7)? 1: ($weekday+1);							
-							if($therecord["ontheday"] != strftime("%u",$tempDate));
+							if($therecord["ontheday"] != date("N",$tempDate));
 								$tempDate = strtotime(nl_langinfo( constant("DAY_".$weekday) ),$tempDate);
 							
 							
@@ -225,7 +225,7 @@ class recurr{
 				case "statusdate":
 				case "orderdate":
 					$fieldlist[] = $name;
-					$therecord[$name] = dateToString(mktime(),"SQL");
+					$therecord[$name] = dateToString(time(),"SQL");
 					break;
 
 				case "bankname":

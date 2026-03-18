@@ -39,7 +39,7 @@
 
 class groupings{
 
-	function groupings($db,$tabledefid){
+	function __construct($db,$tabledefid){
 		$this->db = $db;
 		$this->tabledefid = (int) $tabledefid;
 	}

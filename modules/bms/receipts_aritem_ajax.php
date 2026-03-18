@@ -4,7 +4,7 @@
 	
 	class receiptARItemAjax{
 	
-		function receiptARItemAjax($db){
+		function __construct($db){
 			
 			$this->db = $db;
 			
@@ -143,7 +143,7 @@
 							echo formatVariable($therecord["amount"], "currency");
 							
 							if($therecord["paid"] != 0)
-								echo " (".formatVariable(((real) $therecord["amount"]) - ((real) $therecord["paid"]), "currency").")";								
+								echo " (".formatVariable(((float) $therecord["amount"]) - ((float) $therecord["paid"]), "currency").")";								
 							
 						?></option><?php 
 						

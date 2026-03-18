@@ -121,7 +121,7 @@ smartSearch = {
 		var sdbid = getObjectFromID("sdbid-" + ssID);
 			
 
-		var theurl = APP_PATH + "smartsearch.php?sdbid=" + encodeURI(sdbid.value) + "&t=" + encodeURI(searchDisplay.value.trim());
+		var theurl = APP_PATH + "smartsearch.php?_=" + Date.now() + "&sdbid=" + encodeURI(sdbid.value) + "&t=" + encodeURI(searchDisplay.value.trim());
 		
 		if(offset != 0)
 			theurl += "&o=" + offset;

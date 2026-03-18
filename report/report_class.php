@@ -45,7 +45,7 @@
 		var $reportOutput = "";
 		var $groupBy = "";
 		
-		function phpBMSReport($db){
+		function __construct($db){
 		
 			$this->db = $db;
 		

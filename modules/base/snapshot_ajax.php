@@ -103,11 +103,7 @@
 	
 		}//endwhile
 		
-		$querystatement = "SELECT DECODE(password,'".ENCRYPTION_SEED."') AS decpass FROM users WHERE id=".$_SESSION["userinfo"]["id"];
-		$queryresult = $db->query($querystatement);
-		$passrec = $db->fetchArray($queryresult);
-		
-		$icallink="?u=".$_SESSION["userinfo"]["id"]."&amp;h=".md5("phpBMS".$_SESSION["userinfo"]["firstname"].$_SESSION["userinfo"]["lastname"].$_SESSION["userinfo"]["id"].$passrec["decpass"])
+		$icallink="?u=".$_SESSION["userinfo"]["id"]."&amp;h=".md5("phpBMS".$_SESSION["userinfo"]["firstname"].$_SESSION["userinfo"]["lastname"].$_SESSION["userinfo"]["id"].ENCRYPTION_SEED)
 	
 		?>
 		<input type="hidden" id="eventDateLast" value="<?php echo strtotime("-7 days",$firstDay)?>" />
@@ -127,8 +123,8 @@
 		foreach($events as $date => $times){
 			
 			?><tr class="eventDayName" <?php if(mktime(0,0,0) === ((int) str_replace("d","",$date)) ) echo 'id="today"'?>>
-				<td nowrap="nowrap"><?php echo strftime("%A",((int) str_replace("d","",$date)) ); ?></td>
-				<td width="100%" align="right"><?php echo strftime("%b %e %Y",((int) str_replace("d","",$date)) ); ?></td>
+				<td nowrap="nowrap"><?php echo date("l",((int) str_replace("d","",$date)) ); ?></td>
+				<td width="100%" align="right"><?php echo date("M j Y",((int) str_replace("d","",$date)) ); ?></td>
 			</tr><?php
 	
 			if(count($times)){

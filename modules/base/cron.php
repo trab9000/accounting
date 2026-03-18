@@ -50,7 +50,7 @@
 		$dates	= $ints[2];
 		$hrs	= $ints[1];
 		$mins	= $ints[0];
-		$today	= getdate(gmmktime());
+		$today	= getdate(gmtime());
 
 		// derive day part
 		if($days == '*') {

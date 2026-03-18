@@ -39,7 +39,9 @@
 
 if(class_exists("phpbmsTable")){
 	class clients extends phpbmsTable{
-	
+
+		var $address;
+
 		function checkForInvoices($id){
 			$querystatement="SELECT id FROM invoices WHERE clientid=".((int) $id);
 			$queryresult = $this->db->query($querystatement);
@@ -51,9 +53,9 @@ if(class_exists("phpbmsTable")){
 		// CLASS OVERRIDES ===================================================================
 		// ===================================================================================
 
-		function clients($db,$tabledefid = 0,$backurl = NULL){
+		function __construct($db,$tabledefid = 0,$backurl = NULL){
 			
-			$this->phpbmsTable($db,$tabledefid,$backurl);
+			parent::__construct($db,$tabledefid,$backurl);
 			
 			$this->address = new addresstorecord($db, 306);
 			
@@ -68,7 +70,7 @@ if(class_exists("phpbmsTable")){
 			
 			if($therecord["type"] == "client") {
 
-				$therecord["becameclient"] = dateToString(mktime(), "SQL");
+				$therecord["becameclient"] = dateToString(time(), "SQL");
 				$therecord["hascredit"] = DEFAULT_HASCREDIT;
 				$therecord["creditlimit"] = DEFAULT_CREDITLIMIT;
 
@@ -86,7 +88,7 @@ if(class_exists("phpbmsTable")){
 		}//end function - getDefaults
 		
 	
-		function getRecord($id){
+		function getRecord($id = 0){
 
 			$id = (int) $id;
 			
@@ -178,7 +180,7 @@ if(class_exists("phpbmsTable")){
 		}//end method - updateRecord
 		
 		
-		function insertRecord($variables, $createdby = NULL){
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){
 			
 			$variables = $this->prepareVariables($variables);
 			

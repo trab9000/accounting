@@ -120,7 +120,7 @@ class invoiceList{
 	var $interval;
 	var $queryName;	
 	
-	function invoiceList($db, $queryName = "Recent Orders"){
+	function __construct($db, $queryName = "Recent Orders"){
 		$this->db = $db;
 
 		if(date("D")=="Mon")
@@ -256,7 +256,9 @@ class invoiceList{
 
 class accountsReceivable {
 
-	function accountsReceivable($db){
+	var $db;
+
+	function __construct($db){
 	
 		$this->db = $db;
 	

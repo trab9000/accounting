@@ -41,15 +41,16 @@
 		include("report_class.php");
 		
 	class sqlExport extends phpbmsReport{
-	
+
+		var $tabledefid;
 		var $maintable = "";
 		var $reportOutput = "";
 		
-		function sqlExport($db, $tabledefid){
+		function __construct($db, $tabledefid){
 		
 			$this->tabledefid = ((int) $tabledefid);
 			
-			parent::phpbmsReport($db);
+			parent::__construct($db);
 
 			$querystatement = "
 				SELECT 
@@ -97,7 +98,7 @@
 					if($field === NULL)
 						$addfield = "NULL, ";
 					else
-						$addfield = "'".mysql_real_escape_string($field)."', ";
+						$addfield = "'".$this->db->escape($field)."', ";
 
 					//this is in temp for intallation exporting
 					if(hasRights(-100)){

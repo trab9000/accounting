@@ -127,7 +127,7 @@
 		if($therecord["startdate"])
 			$repeatBase = stringToDate($therecord["startdate"],"SQL");
 		else
-			$repeatBase = mktime();
+			$repeatBase = time();
 		
 		$theinput = new inputCheckbox("repeating",$therecord["repeating"],"repeat");
 		$theinput->setAttribute("onchange","checkRepeat();");
@@ -165,8 +165,8 @@
 		if(!$therecord["repeatontheday"]){
 			 $theinput->setAttribute("disabled","disabled");
 			 $theinput2->setAttribute("disabled","disabled");
-			 $theinput->value = strftime("%u",$repeatBase);
-			 $theinput2->value = strftime("%u",$repeatBase);
+			 $theinput->value = date("N",$repeatBase);
+			 $theinput2->value = date("N",$repeatBase);
 		}
 		$theform->addField($theinput);
 		$theform->addField($theinput2);
@@ -187,7 +187,7 @@
 		$theform->addField($theinput);
 		
 		if(!$therecord["repeatuntil"])
-			$therecord["repeatuntil"] = dateToString(mktime(),"SQL");
+			$therecord["repeatuntil"] = dateToString(time(),"SQL");
 
 		$theinput = new inputDatePicker("repeatuntil", $therecord["repeatuntil"], "repeat until date" ,false, 10, 15, false);
 		$theform->addField($theinput);

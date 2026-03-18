@@ -42,13 +42,13 @@ if(!isset($fromProduct)) {
 }
 	
 class salesHistoryReport{
-	
+
 	var $whereclause="";
 	var $sortorder=" ORDER BY products.partnumber ";
 	var $fromdate;
 	var $todate;
 	var $view;
-
+	var $db;
 	var $productQuery;
 	
 	function initialize($variables,$db){
@@ -215,7 +215,7 @@ TH {
 		</li>
 		<li>
 			date generated:<br />
-			<?php echo dateToString(mktime())." ".timeToString(mktime())?>
+			<?php echo dateToString(time())." ".timeToString(time())?>
 		</li>
 		<li style="padding-left:30px;padding-right:20px;">
 			view:<br />

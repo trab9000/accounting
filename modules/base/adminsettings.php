@@ -222,17 +222,17 @@ foreach($phpbms->modules as $module => $moduleinfo)
 		<p>
 			<label for="date_format">date format</label><br />
 			<select id="date_format" name="date_format">
-				<option value="SQL" <?php if($therecord["date_format"] == "SQL")  echo "selected=\"selected\"";?>>SQL (<?php echo dateToString(mktime() ,"SQL")?>)</option>
-				<option value="English, US" <?php if($therecord["date_format"] == "English, US")  echo "selected=\"selected\"";?>>English, US (<?php echo dateToString(mktime(),"English, US")?>)</option>
-				<option value="English, UK" <?php if($therecord["date_format"] == "English, UK")  echo "selected=\"selected\"";?>>English, UK (<?php echo dateToString(mktime(),"English, UK")?>)</option>
-				<option value="Dutch, NL" <?php if($therecord["date_format"] == "Dutch, NL")  echo "selected=\"selected\"";?>>Dutch, NL (<?php echo dateToString(mktime(),"Dutch, NL")?>)</option>
+				<option value="SQL" <?php if($therecord["date_format"] == "SQL")  echo "selected=\"selected\"";?>>SQL (<?php echo dateToString(time() ,"SQL")?>)</option>
+				<option value="English, US" <?php if($therecord["date_format"] == "English, US")  echo "selected=\"selected\"";?>>English, US (<?php echo dateToString(time(),"English, US")?>)</option>
+				<option value="English, UK" <?php if($therecord["date_format"] == "English, UK")  echo "selected=\"selected\"";?>>English, UK (<?php echo dateToString(time(),"English, UK")?>)</option>
+				<option value="Dutch, NL" <?php if($therecord["date_format"] == "Dutch, NL")  echo "selected=\"selected\"";?>>Dutch, NL (<?php echo dateToString(time(),"Dutch, NL")?>)</option>
 			</select>
 		</p>
 		<p>
 			<label for="time_format">time format</label><br />
 			<select id="time_format" name="time_format">
-				<option value="24 Hour" <?php if($therecord["time_format"]=="24 Hour")  echo "selected=\"selected\"";?>>24 Hour (<?php echo timeToString(mktime() ,"24 Hour")?>)</option>
-				<option value="12 Hour" <?php if($therecord["time_format"]=="12 Hour")  echo "selected=\"selected\"";?>>12 Hour (<?php echo timeToString(mktime(),"12 Hour")?>)</option>
+				<option value="24 Hour" <?php if($therecord["time_format"]=="24 Hour")  echo "selected=\"selected\"";?>>24 Hour (<?php echo timeToString(time() ,"24 Hour")?>)</option>
+				<option value="12 Hour" <?php if($therecord["time_format"]=="12 Hour")  echo "selected=\"selected\"";?>>12 Hour (<?php echo timeToString(time(),"12 Hour")?>)</option>
 			</select>
 		</p>
 		<p>&nbsp;</p>

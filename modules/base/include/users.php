@@ -58,7 +58,7 @@ if(class_exists("phpbmsTable")){
 		}
 
 	
-		function insertRecord($variables, $createdby = NULL){	
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){	
 			
 			$this->fields["password"]["type"] = "password";
 			unset($this->fields["lastlogin"]);

@@ -53,10 +53,16 @@ class phpbmsForm{
 	var $bottomJS = array();
 	
 	var $fields = array();
-	
+
 	var $onload = array();
-	
-	function phpbmsForm($action = NULL, $method="post", $name="record", $onsubmit="return validateForm(this);", $dontSubmit = true){
+
+	var $action;
+	var $method;
+	var $name;
+	var $onsubmit;
+	var $dontSubmit;
+
+	function __construct($action = NULL, $method="post", $name="record", $onsubmit="return validateForm(this);", $dontSubmit = true){
 		if ($action == NULL)
 			$action = $_SERVER["REQUEST_URI"];
 			
@@ -221,7 +227,7 @@ class inputField{
 	
 	var $jsIncludes = array();
 	
-	function inputField($id, $value, $displayName = NULL ,$required = false, $type = NULL, $size = 32, $maxlength = 128, $displayLabel = true){
+	function __construct($id, $value, $displayName = NULL ,$required = false, $type = NULL, $size = 32, $maxlength = 128, $displayLabel = true){
 		$this->id = $id;
 		$this->name = $id;
 		if($displayName == "")
@@ -342,9 +348,9 @@ class inputCheckbox extends inputField{
 	   value =			Whether the check box is checked
 	   disabled =		Whether the check box is checkable
 	*/
-	function inputCheckbox($id,$value = false, $displayName = NULL, $disabled = false, $displayLabel = true){
+	function __construct($id,$value = false, $displayName = NULL, $disabled = false, $displayLabel = true){
 		
-		parent::inputField($id, $value, $displayName, false, NULL, NULL, NULL, $displayLabel);
+		parent::__construct($id, $value, $displayName, false, NULL, NULL, NULL, $displayLabel);
 		
 		if($disabled)
 			$this->_attributes["disabled"] = "disabled";		
@@ -384,8 +390,10 @@ class inputBasicList extends inputField{
 	/*
 	   list =	associative array of key (display), => value (value) for the option tags
 	*/
-	function inputBasicList ($id,$value = "",$list = array(), $displayName = NULL, $displayLabel = true){
-		parent::inputField($id, $value, $displayName, false, NULL, NULL, NULL, $displayLabel);
+	var $thelist;
+
+	function __construct($id,$value = "",$list = array(), $displayName = NULL, $displayLabel = true){
+		parent::__construct($id, $value, $displayName, false, NULL, NULL, NULL, $displayLabel);
 		
 		$this->thelist = $list;
 	}
@@ -420,11 +428,14 @@ class inputDataTableList extends inputField{
 	   orderclasue = 	SQL ORDER BY clause (minus the ORDER BY)
 	   hasblank =		boolean, wehterh <none> (0) can be an option
 	*/
-	
-	function inputDataTableList($db, $id, $value, $table, $valuefield, $displayfield, 
+	var $hasblank;
+	var $db;
+	var $queryresult;
+
+	function __construct($db, $id, $value, $table, $valuefield, $displayfield, 
 								$whereclause = "", $orderclause = "", $hasblank = true, $displayName=NULL, $displayLabel = true){
 								
-		parent::inputField($id, $value, $displayName, false, NULL, NULL, NULL, $displayLabel);
+		parent::__construct($id, $value, $displayName, false, NULL, NULL, NULL, $displayLabel);
 		
 		$this->hasblank = $hasblank;
 		$this->db = $db;
@@ -466,8 +477,13 @@ class inputChoiceList extends inputField{
 	listname = 		name of database list to retrieve
 	blankvalue =	What to display for a blank value.
 	*/
-	function inputChoiceList($db, $id, $value, $listname, $displayName="", $blankvalue="none", $displayLabel = true){
-		parent::inputField($id, $value, $displayName, false, NULL, NULL, NULL, $displayLabel);
+	var $db;
+	var $listname;
+	var $blankvalue;
+	var $queryresult;
+
+	function __construct($db, $id, $value, $listname, $displayName="", $blankvalue="none", $displayLabel = true){
+		parent::__construct($id, $value, $displayName, false, NULL, NULL, NULL, $displayLabel);
 		
 		$this->db = $db;
 		$this->listname = $listname;
@@ -527,10 +543,10 @@ class inputChoiceList extends inputField{
 //============================================================================================
 class inputCurrency extends inputField{
 
-	function inputCurrency($id, $value, $displayName = NULL ,$required = false, $size = 10, $maxlength = 12, $displayLabel = true){
+	function __construct($id, $value, $displayName = NULL ,$required = false, $size = 10, $maxlength = 12, $displayLabel = true){
 	
 		$type = NULL;
-		parent::inputField($id, $value, $displayName,$required, $type, $size, $maxlength, $displayLabel);
+		parent::__construct($id, $value, $displayName,$required, $type, $size, $maxlength, $displayLabel);
 	}
 
 
@@ -565,8 +581,8 @@ class inputCurrency extends inputField{
 //============================================================================================
 class inputTextarea extends inputField{
 	
-	function inputTextarea($id, $value, $displayName = NULL ,$required = false, $rows = 5, $cols= 48, $displayLabel = true){
-		parent::inputField($id, $value, $displayName, $required, NULL, NULL, NULL, $displayLabel);
+	function __construct($id, $value, $displayName = NULL ,$required = false, $rows = 5, $cols= 48, $displayLabel = true){
+		parent::__construct($id, $value, $displayName, $required, NULL, NULL, NULL, $displayLabel);
 
 		unset($this->_attributes["size"]);
 		unset($this->_attributes["maxlength"]);
@@ -596,12 +612,14 @@ class inputPercentage extends inputField{
 	/*
 	precision = 	decimal points of accuracy to display
 	*/
-	function inputPercentage($id, $value, $displayName = NULL , $precision = 1, $required = false, $size = 9, $maxlength = 10, $displayLabel = true){
+	var $precision;
+
+	function __construct($id, $value, $displayName = NULL , $precision = 1, $required = false, $size = 9, $maxlength = 10, $displayLabel = true){
 		
 		$this->precision = (int) $precision;
 		
 		$type = NULL;
-		parent::inputField($id, $value, $displayName,$required, $type, $size, $maxlength, $displayLabel);
+		parent::__construct($id, $value, $displayName,$required, $type, $size, $maxlength, $displayLabel);
 	}
 
 
@@ -628,10 +646,10 @@ class inputPercentage extends inputField{
 //============================================================================================
 class inputDatePicker extends inputField{
 
-	function inputDatePicker($id, $value, $displayName = NULL ,$required = false, $size = 10, $maxlength = 15, $displayLabel = true){
+	function __construct($id, $value, $displayName = NULL ,$required = false, $size = 10, $maxlength = 15, $displayLabel = true){
 		$type = "date";
 		
-		parent::inputField($id, $value, $displayName,$required, $type, $size, $maxlength, $displayLabel);
+		parent::__construct($id, $value, $displayName,$required, $type, $size, $maxlength, $displayLabel);
 		
 		$this->jsIncludes[] = "common/javascript/datepicker.js";
 	}
@@ -658,10 +676,10 @@ class inputDatePicker extends inputField{
 //============================================================================================
 class inputTimePicker extends inputField{
 
-	function inputTimePicker($id, $value, $displayName = NULL ,$required = false, $size = 10, $maxlength = 15, $displayLabel = true){
+	function __construct($id, $value, $displayName = NULL ,$required = false, $size = 10, $maxlength = 15, $displayLabel = true){
 		$type = "time";
 		
-		parent::inputField($id, $value, $displayName,$required, $type, $size, $maxlength, $displayLabel);
+		parent::__construct($id, $value, $displayName,$required, $type, $size, $maxlength, $displayLabel);
 				
 		$this->jsIncludes[] = "common/javascript/timepicker.js";
 	}
@@ -685,9 +703,9 @@ class inputTimePicker extends inputField{
 //============================================================================================
 class inputRolesList extends inputField{
 
-	function inputRolesList($db,$id,$selected,$displayName = NULL, $required = false, $displayLabel = true){
+	function __construct($db,$id,$selected,$displayName = NULL, $required = false, $displayLabel = true){
 				
-		parent::inputField($id, $selected, $displayName, $required, NULL, NULL, NULL, $displayLabel);
+		parent::__construct($id, $selected, $displayName, $required, NULL, NULL, NULL, $displayLabel);
 
 		$this->db = $db;
 		
@@ -715,6 +733,10 @@ class inputRolesList extends inputField{
 
 
 class inputSmartSearch extends inputField{
+	var $db;
+	var $searchName;
+	var $searchInfo;
+	var $displayValue;
 
 /*
 		*db = 			(dbObj)		Database Object
@@ -732,11 +754,11 @@ class inputSmartSearch extends inputField{
 		inside an element that should not be able to handle a DIV tag inside it (standards-wise), 
 		IE will report a Javascript error.
 */
-	function inputSmartSearch($db, $id, $searchName, $initialvalue = "", $displayName = NULL, $required=false, 
+	function __construct($db, $id, $searchName, $initialvalue = "", $displayName = NULL, $required=false, 
 										$size = 32, $maxlength = 255, $displayLabel = true)  {
 		$this->db = $db;
 		
-		parent::inputField($id, $initialvalue, $displayName,$required, NULL, $size, $maxlength, $displayLabel);
+		parent::__construct($id, $initialvalue, $displayName,$required, NULL, $size, $maxlength, $displayLabel);
 
 		$this->searchName = $searchName;
 

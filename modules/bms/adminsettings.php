@@ -3,7 +3,7 @@
 	//called [module]Update with a method called updateSettings($variables)
 	class bmsUpdate{
 	
-		function bmsUpdate($db){
+		function __construct($db){
 			
 			$this->db = $db;
 			

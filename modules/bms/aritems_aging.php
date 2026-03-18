@@ -44,7 +44,7 @@ class arAging{
 	var $printSummary = false;
 	var $serviceCharges = 0;
 	
-	function arAging($db, $userid = NULL){
+	function __construct($db, $userid = NULL){
 		
 		$this->db = $db;
 		

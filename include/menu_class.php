@@ -38,10 +38,11 @@
 */
 
 class topMenu{
-	
+
 	var $db;
+	var $menuresult;
 	
-	function topMenu($db){
+	function __construct($db){
 		$this->db = $db;
 
 		$querystatement = "SELECT id,name,link,roleid FROM menu WHERE parentid=0 ORDER BY displayorder";

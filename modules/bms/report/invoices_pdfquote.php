@@ -54,9 +54,9 @@ class  quotePDF extends invoicePDF{
 
 	var $title = "Quote";
 
-	function quotePDF($db, $orientation='P', $unit='mm', $format='Letter'){
+	function __construct($db, $orientation='P', $unit='mm', $format='Letter'){
 
-		$this->invoicePDF($db, $orientation, $unit, $format);
+		parent::__construct($db, $orientation, $unit, $format);
 		
 	}//end method
 	

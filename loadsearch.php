@@ -42,7 +42,7 @@
 
 		var $db;
 		
-		function savedSearch($db){
+		function __construct($db){
 			$this->db=$db;
 		}
 	

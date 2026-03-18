@@ -43,7 +43,9 @@ include("../../include/session.php");
 
 class clientInfo{
 
-	function clientInfo($db){
+	public $db;
+
+	function __construct($db){
 		
 		$this->db = $db;
 		
@@ -152,7 +154,7 @@ class clientInfo{
 				
 		$arrecord = $this->db->fetchArray($this->db->query($querystatement));
 		
-		return  ((real) $creditlimit) - ((real) $arrecord["amtopen"]);		
+		return  ((float) $creditlimit) - ((float) $arrecord["amtopen"]);		
 	
 	}//end method - _getCreditLeft
 

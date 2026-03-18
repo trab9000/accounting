@@ -52,7 +52,7 @@
 		
 		var $db;
 		
-		function displayTable($db){
+		function __construct($db){
 			$this->db=$db;
 		}
 		
@@ -306,7 +306,7 @@ function showResultHeader(){
 		var $searchvalue;
 		var $fieldname;
 
-		function displaySelectTable($db){
+		function __construct($db){
 			$this->db = $db;
 		}
 
@@ -384,17 +384,23 @@ function showResultHeader(){
 	class displaySearchTable extends displayTable{
 		var $isselect=false;
 		var $therecords="";
-		
+
 		var $querytype="search";
-		
+
 		var $queryjoinclause="";
 		var $querywhereclause="";
-		
+
 		var $savedfindoptions="";
 		var $savedselection="";
 		var $savedstartswithfield="";
 		var $savedstartswith="";
 		var $savedendswith="";
+
+		var $thegroupings;
+		var $findoptions;
+		var $searchablefields;
+		var $truecount;
+		var $options;
 		
 		var $tableoptions;
 
@@ -581,21 +587,11 @@ function displayQueryButtons() {
 	
 	?><div id="resultInfoDiv"><?php
  	
-	if(!isset($this->tableoptions["new"])){
-		 $this->tableoptions["new"]["allowed"]=0;
-		 $this->tableoptions["new"]["roleid"]=0;
-	} 
-	if(!isset($this->tableoptions["select"])) {
-		$this->tableoptions["select"]["allowed"]=0;
-		$this->tableoptions["select"]["roleid"]=0;
-	}
-	if(!isset($this->tableoptions["edit"])){
-		 $this->tableoptions["edit"]["allowed"]=0;
-		 $this->tableoptions["edit"]["roleid"]=0;
-	}
-	if(!isset($this->tableoptions["printex"])) {
-		$this->tableoptions["printex"]["allowed"]=0;
-		$this->tableoptions["printex"]["roleid"]=0;
+	if(!is_array($this->tableoptions)) $this->tableoptions = array();
+
+	foreach(array("new","select","edit","printex") as $_opt){
+		if(!isset($this->tableoptions[$_opt]) || !is_array($this->tableoptions[$_opt]))
+			$this->tableoptions[$_opt] = array("allowed"=>0,"roleid"=>0);
 	}
 	if(!isset($this->tableoptions["othercommands"])) $this->tableoptions["othercommands"]=false;
 
@@ -1011,7 +1007,7 @@ function displayRelationships(){
 		var $maintable;
 		var $deletebutton;
 		
-		function searchFunctions($db,$tabledefid,$idsArray=array()){
+		function __construct($db,$tabledefid,$idsArray=array()){
 						
 			$this->db = $db;
 			$this->tabledefid = (int) $tabledefid;

@@ -24,7 +24,7 @@ function processSQLfile($db,$filename){
 
 function verifyAdminLogin($db,$user,$pass){
 
-	if((real) getCurrentVersion($db,"base")>=.7)
+	if((float) getCurrentVersion($db,"base")>=.7)
 		$querystatement="SELECT id FROM users WHERE login=\"".mysql_real_escape_string($user)."\" AND password=encode(\"".mysql_real_escape_string($pass)."\",\"".ENCRYPTION_SEED."\") AND admin=1";
 	else
 		$querystatement="SELECT id FROM users WHERE login=\"".mysql_real_escape_string($user)."\" AND password=encode(\"".mysql_real_escape_string($pass)."\",\"".ENCRYPTION_SEED."\") AND accesslevel>=90";

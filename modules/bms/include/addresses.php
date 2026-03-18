@@ -150,7 +150,7 @@ if(class_exists("phpbmsTable")){
 		}//end method
 		
 		
-		function insertRecord($variables, $createdby = NULL){
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){
 		
 			$variables = $this->formatVariables($variables);
 	

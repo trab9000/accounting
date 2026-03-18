@@ -1,5 +1,7 @@
 # Config files with credentials
 settings.php
+settings.live.php
+settings.docker.php
 config.php
 *.env
 .env
@@ -13,6 +15,19 @@ logs/
 *.log
 cache/
 
+# Mail capture (dev only, may contain sensitive data)
+mail_capture/
+
+# Docker/dev-only PHP config (has Docker-specific paths)
+.user.ini
+
+# Windows Zone.Identifier metadata files
+*:Zone.Identifier
+
+# AI tool configs
+.claude/
+.gemini/
+
 # OS/editor junk
 .DS_Store
 Thumbs.db
@@ -21,3 +36,4 @@ Thumbs.db
 
 # Dependencies (if using Composer)
 vendor/
+token

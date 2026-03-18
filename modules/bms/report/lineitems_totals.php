@@ -40,7 +40,7 @@
 require("../../../include/session.php");
 	
 class totalReport{
-	
+
 	var $selectcolumns;
 	var $selecttable;
 	var $whereclause="";
@@ -48,8 +48,11 @@ class totalReport{
 	var $showinvoices=false;
 	var $showlineitems=false;
 	var $padamount=20;
+	var $groupings;
+	var $columns;
+	var $db;
 
-	function totalReport($db,$variables = NULL){
+	function __construct($db,$variables = NULL){
 		$this->db = $db;
 
 		// first we define the available groups
@@ -344,7 +347,7 @@ class totalReport{
 	<div id="toprint">
 		<h1><span><?php echo $pageTitle?></span></h1>
 		<h2>Source: <?php echo $_SESSION["printing"]["dataprint"]?></h2>
-		<h2>Date: <?php echo dateToString(mktime())." ".timeToString(mktime())?></h2>
+		<h2>Date: <?php echo dateToString(time())." ".timeToString(time())?></h2>
 	
 		<?php $this->showReportTable();?>
 	</div>

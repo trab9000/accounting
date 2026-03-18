@@ -40,7 +40,7 @@ if(class_exists("phpbmsTable")){
 
 	class receiptitems{
 	
-		function receiptitems($db){
+		function __construct($db){
 			
 			$this->db = $db;
 			
@@ -259,7 +259,7 @@ if(class_exists("phpbmsTable")){
 			
 			$therecord["clientid"] = "";
 			$therecord["status"] = "open";
-			$therecord["receiptdate"] = dateToString(mktime(),"SQL");
+			$therecord["receiptdate"] = dateToString(time(),"SQL");
 			
 			return $therecord;
 		}
@@ -296,7 +296,7 @@ if(class_exists("phpbmsTable")){
 	
 	
 	
-		function insertRecord($variables, $createdby = NULL){
+		function insertRecord($variables, $createdby = NULL, $overrideID = false){
 	
 			if($createdby === NULL)
 				$createdby = $_SESSION["userinfo"]["id"];
@@ -504,9 +504,9 @@ function defineReceiptPost(){
 
 	class receiptPost extends tablePost{
 		
-		function receiptPost($db, $modifiedby = NULL){
+		function __construct($db, $modifiedby = NULL){
 			
-			parent::tablePost($db, $modifiedby);
+			parent::__construct($db, $modifiedby);
 			
 		}//end method
 
